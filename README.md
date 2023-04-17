@@ -1,3 +1,3 @@
 # FIB-IA
 
-Prácticas hechas en la asignatura IA de la FIB
+Projects made in the Artificial Inteligence course of FIB-UPC
