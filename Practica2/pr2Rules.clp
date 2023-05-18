@@ -9,29 +9,29 @@
 ;;* INIT RULES *
 ;;**************
 
-(defrule ask-nom ""
+(defrule asks::ask-nom ""
    (not (nom ?))
    =>
    (assert (nom (ask-question "Quin nom tens? "))))
 
-(defrule ask-edat ""
+(defrule asks::ask-edat ""
    (not (edat ?))
    =>
    (assert (edat (ask-question "Quina edat tens? "))))
 
-(defrule ask-sexe ""
+(defrule asks::ask-sexe ""
    (not (sexe ?))
    =>
    (assert (sexe (m-or-f-p "Quin sexe tens (m/f)? "))))
 
-(defrule ask-nvactivitat ""
+(defrule asks::ask-nvactivitat ""
    (not (nvactivitat ?))
    =>
    (assert (nvactivitat
    (ask-allowed-values "Quin nivell d'activitat tens? (sedentari/actiu/molt_actiu)? "
                     s a ma))))
 
-(defrule ask-cal ""
+(defrule asks::ask-cal ""
    (not (cal ?))
    (sexe ?s)
    (edad ?e)
