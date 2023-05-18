@@ -1,6 +1,13 @@
 
 
-## INIT RULES
+;;***********************
+;;* DETERMINAR CALORIES *
+;;***********************
+
+
+;;**************
+;;* INIT RULES *
+;;**************
 
 (defrule ask-nom ""
    (not (nom ?))
@@ -18,24 +25,23 @@
    (assert (sexe (m-or-f-p "Quin sexe tens (m/f)? "))))
 
 (defrule ask-nvactivitat ""
-   (not (nvacticitat ?))
+   (not (nvactivitat ?))
    =>
    (assert (nvactivitat
    (ask-allowed-values "Quin nivell d'activitat tens? (sedentari/actiu/molt_actiu)? "
                     s a ma))))
 
-## DETERMINAR CALORIES
-
-# 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200
-
-(defrule determine-cal ""
-   (edat < 6)
-   (nvactivitat s)
+(defrule ask-cal ""
+   (not (cal ?))
+   (sexe ?s)
+   (edad ?e)
+   (nvactivitat ?na)
    =>
-   (assert (cal 1000))
-   )
+   (assert (cal (det-cal ?s ?e ?na))))
 
-## TEST RULES
+;;**************
+;;* TEST RULES *
+;;**************
 
 (defrule system-banner ""
   (declare (salience 10))
@@ -43,7 +49,7 @@
   (println crlf "The Engine Diagnosis Expert System" crlf))
 
 (defrule print ""
-  (declare (salience 10))
+  (declare (salience -10))
   (nom ?n)
   (sexe ?s)
   (edad ?e)

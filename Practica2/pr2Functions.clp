@@ -23,3 +23,16 @@
    (if (eq ?response m)
        then m 
        else f))
+
+(deffunction det-cal(?s ?na)
+   (if (eq ?s f) 
+      then (
+         if (eq ?na s) 
+            then (1600) 
+            else (
+               if (eq ?na a)
+                  then (1800)
+                  else (2000)
+                  )
+            )
+)

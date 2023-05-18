@@ -70,3 +70,49 @@
         (type INSTANCE)
         (create-accessor read-write))
 )
+
+
+
+
+(defrule determine-cal ""
+   (not (cal ?))
+   (sexe f)
+   (nvactivitat s)
+   =>
+   (assert (bind cal? 1600))
+   )
+
+(defrule determine-cal ""
+   (not (cal ?))
+   (sexe f)
+   (nvactivitat a)
+   =>
+   (assert (bind cal? 1800))
+   )
+
+(defrule determine-cal ""
+   (not (cal ?))
+   (or (and (sexe f)
+            (nvactivitat ma))
+       (and (sexe m)
+            (nvactivitat s))
+            )
+   =>
+   (assert (bind cal? 2000))
+   )
+
+(defrule determine-cal ""
+   (not (cal ?))
+   (sexe m)
+   (nvactivitat a)
+   =>
+   (assert (bind cal? 2200))
+   )
+
+(defrule determine-cal ""
+   (not(cal ?))
+   (sexe f)
+   (nvactivitat ma)
+   =>
+   (assert (bind cal? 2400))
+   )
