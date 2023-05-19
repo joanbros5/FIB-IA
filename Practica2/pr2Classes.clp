@@ -70,3 +70,21 @@
         (type INSTANCE)
         (create-accessor read-write))
 )
+
+(defclass Persona
+    (is-a USER)
+    (role concrete)
+    (pattern-match reactive)
+    (slot nom
+        (type STRING)
+        (create-accessor read-write))
+    (slot sexe
+        (type STRING)
+        (create-accessor read-write))
+    (slot edat
+        (type INTEGER)
+        (create-accessor read-write))
+    (slot nv_act
+        (type STRING)
+        (create-accessor read-write))
+)

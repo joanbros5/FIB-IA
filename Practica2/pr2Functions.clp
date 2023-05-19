@@ -24,15 +24,14 @@
        then m 
        else f))
 
-(deffunction det-cal(?s ?na)
-   (if (eq ?s f) 
-      then (
-         if (eq ?na s) 
-            then (1600) 
-            else (
-               if (eq ?na a)
-                  then (1800)
-                  else (2000)
-                  )
-            )
+(deffunction calcul-caloric (?sexe ?edat ?na)
+   (bind ?C 0)
+   (if (eq ?sexe m)
+      then 
+            (bind ?C 2600)
+      else
+            (bind ?C 2000)
+   )
+   (return ?C)
+;(+ (* (- (?edat) (65)) 10)  
 )

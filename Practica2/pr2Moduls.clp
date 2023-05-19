@@ -3,22 +3,22 @@
 (defmodule MAIN (export ?ALL))
 
 ;; Modul Preguntes
-(defmodule asks
+(defmodule questions
 	(import MAIN ?ALL)
 	(export ?ALL)
 )
 
-;; Modul Calculate data
-(defmodule calc_data
+; Modul Logicas
+(defmodule logicas
 	(import MAIN ?ALL)
-	(import asks ?ALL)
+	(import questions ?ALL)
 	(export ?ALL)
 )
 
 ;; Modul Prints
 (defmodule prints
 	(import MAIN ?ALL)
-	(import asks ?ALL)
-	(import calc_data ?ALL)	
+	(import questions ?ALL)
+;	(import calc_data ?ALL)	
 	(export ?ALL)
 )
