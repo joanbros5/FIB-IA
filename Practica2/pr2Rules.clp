@@ -13,17 +13,18 @@
    =>
    (println crlf "All asked" crlf)
    (bind ?total-cal (calcul-caloric ?s ?e ?na))
+   (println crlf ?total-cal crlf)
    (focus logicas)
 )
 
-(defrule logicas::assing-calories
-   (not (calories ?total-cal))
-   (sexe ?s)
-   (edad ?e)
-   (nvactivitat ?na)
+(defrule logicas::llistar-plats
+   (not (plats-llistats))
+   ?menus-disponibles <- (MenusCandidats)
    =>
-   (bind ?total-cal (calcul-caloric ?s ?e ?na))
-   (println crlf "Calories calculades" crlf)
+   (bind ?esmorzars-disponibles (find-all-instances ((?c Plat))))
+   (bind ?dinars-disponibles (find-all-instances ((?c Plat))))
+   (bind ?sopars-disponibles (find-all-instances ((?c Plat))))
+   (assert plats-llistats)
 )
 
 ;;*******************
