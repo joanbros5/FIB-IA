@@ -4,34 +4,6 @@
 ;;* DETERMINAR CALORIES *
 ;;***********************
 
-
-;;*******************
-;;* QUESTIONS RULES *
-;;*******************
-
-(defrule prints::print ""
-  (declare (salience 10))
-  (nom ?n)
-  (sexe ?s)
-  (edad ?e)
-  (nvactivitat ?na)
-  =>
-  (println crlf "Nom:" ?n crlf)
-  (println crlf "Sexe:" ?s crlf)
-  (println crlf "Edat:" ?e crlf)
-  (println crlf "Nivell d'activitat:" ?na crlf)
-  )
-
-(defrule logicas::assing-calories ""
-   (not (INTEGER ?total-cal))
-   (sexe ?s)
-   (edad ?e)
-   (nvactivitat ?na)
-   =>
-   (bind ?total-cal (calcul-caloric ?s ?e ?na))
-   (println crlf "Calories calculades" crlf)
-)
-
 (defrule questions::ask-all
    (declare (salience 10))
    (nom ?n)
@@ -40,8 +12,23 @@
    (nvactivitat ?na)
    =>
    (println crlf "All asked" crlf)
+   (bind ?total-cal (calcul-caloric ?s ?e ?na))
    (focus logicas)
 )
+
+(defrule logicas::assing-calories
+   (not (calories ?total-cal))
+   (sexe ?s)
+   (edad ?e)
+   (nvactivitat ?na)
+   =>
+   (bind ?total-cal (calcul-caloric ?s ?e ?na))
+   (println crlf "Calories calculades" crlf)
+)
+
+;;*******************
+;;* QUESTIONS RULES *
+;;*******************
 
 (defrule questions::ask-nom ""
    (not (nom ?))
@@ -51,7 +38,7 @@
 (defrule questions::ask-edat ""
    (not (edat ?))
    =>
-   (assert (edat (ask-question "Quina edat tens? "))))
+   (assert (edat (ask-allowed-nums "Quina edat tens? "))))
 
 (defrule questions::ask-sexe ""
    (not (sexe ?))
@@ -68,6 +55,19 @@
 ;;**************
 ;;* TEST RULES *
 ;;**************
+
+(defrule prints::print ""
+  (declare (salience 10))
+  (nom ?n)
+  (sexe ?s)
+  (edad ?e)
+  (nvactivitat ?na)
+  =>
+  (println crlf "Nom:" ?n crlf)
+  (println crlf "Sexe:" ?s crlf)
+  (println crlf "Edat:" ?e crlf)
+  (println crlf "Nivell d'activitat:" ?na crlf)
+  )
 
 (defrule MAIN::system-banner ""
   (declare (salience 10))
