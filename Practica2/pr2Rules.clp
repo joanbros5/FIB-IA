@@ -13,7 +13,11 @@
    =>
    (println crlf "All asked" crlf)
    (bind ?total-cal (calcul-caloric ?s ?e ?na))
-   (println crlf ?total-cal crlf)
+
+   (printout t crlf "-/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\-")
+   (println crlf "Calories al dia aproximades per a " ?n ": " ?total-cal)
+   (printout t "-\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/-" crlf)
+
    (bind ?esmorzars-disponibles (find-all-instances ((?c Plat)) 
                                     (member$ esmorzar ?c:tipusApat))
    )
@@ -39,8 +43,8 @@
                   )
       )
 
-      (printout t crlf "--------------------------------------")
-      (printout t crlf "--MENU " ?index crlf)
+      (printout t crlf "--------------------------------")
+      (printout t crlf "-----------MENU DIA " ?index "-----------" crlf)
 
 
       (printout t crlf "  Esmorzar:          " (nth$ 1 ?menu-escollit) crlf)
@@ -54,13 +58,14 @@
       
       (printout t crlf "  Calories totals: " (count_calories ?menu-escollit) crlf)
 
-      (printout t crlf "--------------------------------------" crlf)
+      ;(printout t crlf "--------------------------------" crlf)
 
       (bind ?menu-dia-anterior ?menu-escollit)
 
       (bind ?index (+ ?index 1))
 
    )
+   (printout t crlf "--------------DONE--------------" crlf)
    (focus logicas)
 )
 
