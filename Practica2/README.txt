@@ -21,7 +21,9 @@
 	> (load "pr2Rules.clp")
 	> (reset)
 	> (run 1)
-		...(input)
+		Benvingut al increíble creador de menús!
 	> (run 1)
-		...(input)
+		[input]
+	> (run 1)
+		[input]
 	etc

@@ -35,10 +35,10 @@
    )
 
 (deffunction m-or-f-p (?question)
-   (bind ?response (ask-allowed-values ?question m f))
-   (if (eq ?response m)
-       then m 
-       else f
+   (bind ?response (ask-allowed-values ?question h d))
+   (if (eq ?response h)
+       then h 
+       else d
        )
    )
 

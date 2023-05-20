@@ -11,10 +11,10 @@
    (edat ?e)
    (nvactivitat ?na)
    =>
-   (println crlf "All asked" crlf)
+   ;(println crlf crlf "Input fet..." crlf)
    (bind ?total-cal (calcul-caloric ?s ?e ?na))
 
-   (printout t crlf "-/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\-")
+   (printout t crlf crlf "-/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\-")
    (println crlf "Calories al dia aproximades per a " ?n ": " ?total-cal)
    (printout t "-\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/-" crlf)
 
@@ -87,13 +87,13 @@
 (defrule questions::ask-sexe ""
    (not (sexe ?))
    =>
-   (assert (sexe (m-or-f-p "Quin sexe tens (m/f)? "))))
+   (assert (sexe (m-or-f-p "Quin sexe tens (h/d)? "))))
 
 (defrule questions::ask-nvactivitat ""
    (not (nvactivitat ?))
    =>
    (assert (nvactivitat
-   (ask-allowed-values "Quin nivell d'activitat tens? (sedentari/actiu/molt_actiu)? "
+   (ask-allowed-values "Quin nivell d'activitat tens? (sedentari (s) / actiu (a) / molt_actiu (ma))? "
                     s a ma))))
 
 ;;**************
@@ -116,7 +116,7 @@
 (defrule MAIN::system-banner ""
   (declare (salience 10))
   =>
-  (println crlf "The Engine Diagnosis Expert System" crlf)
+  (println crlf crlf "Benvingut al increíble creador de menús!" crlf)
   (focus questions)
   )
 
