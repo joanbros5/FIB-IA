@@ -157,3 +157,62 @@
     (modify ?user (sexe ?sex))
     (assert (asked-sexe))
 )
+
+
+
+(defrule questions::ask-all
+   (declare (salience 10))
+   (nom ?n)
+   (sexe ?s)
+   (edat ?e)
+   (nvactivitat ?na)
+   =>
+   (println crlf "All asked" crlf)
+   (bind ?total-cal (calcul-caloric ?s ?e ?na))
+   (println crlf ?total-cal crlf)
+   (bind ?esmorzars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ esmorzar ?c:tipusApat))
+   )
+   (bind ?dinars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ dinar ?c:tipusApat))
+   )
+   (bind ?sopars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ sopar ?c:tipusApat))
+   )
+   (println crlf ?esmorzars-disponibles crlf)
+   (println crlf ?dinars-disponibles crlf)
+   (println crlf ?sopars-disponibles crlf)
+   (focus logicas)
+)
+
+;(defrule logicas::llistar-plats
+;   (declare (salience 10))
+;   (not (esmorzars-disponibles ?))
+;   =>
+;   (assert (esmorzars-disponibles (find-all-instances ((?c Plat)) (member$ esmorzar ?c:tipusApat))))
+;   (bind ?dinars-disponibles (find-all-instances ((?c Plat))))
+;   (bind ?sopars-disponibles (find-all-instances ((?c Plat))))
+;   (assert (plats-llistats))
+;)
+
+(defrule logicas::llistar-plats
+   (declare (salience 10))
+   (not (esmorzars-disponibles ?))
+;   (not (dinars-disponibles ?))
+;   (not (sopars-disponibles ?))
+   =>
+   (assert (esmorzars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ esmorzar ?c:tipusApat))
+            )
+
+   )
+   (assert (dinars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ dinar ?c:tipusApat))
+            )
+   )
+;   (assert (sopars-disponibles (find-all-instances ((?c Plat)) 
+;                                    (member$ sopar ?c:tipusApat))
+;            )
+;   )
+)
+

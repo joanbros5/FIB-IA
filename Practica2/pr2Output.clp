@@ -1,3 +1,4 @@
+
 (defrule imprimir-menu-diario
    ?menuDiario <- (MenuDiari)
    ?esmorzar <- (platEsmorzar ?platEsmorzar)

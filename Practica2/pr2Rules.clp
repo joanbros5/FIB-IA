@@ -14,18 +14,21 @@
    (println crlf "All asked" crlf)
    (bind ?total-cal (calcul-caloric ?s ?e ?na))
    (println crlf ?total-cal crlf)
+   (bind ?esmorzars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ esmorzar ?c:tipusApat))
+   )
+   (bind ?dinars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ dinar ?c:tipusApat))
+   )
+   (bind ?sopars-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ sopar ?c:tipusApat))
+   )
+   (println crlf ?esmorzars-disponibles crlf)
+   (println crlf ?dinars-disponibles crlf)
+   (println crlf ?sopars-disponibles crlf)
    (focus logicas)
 )
 
-(defrule logicas::llistar-plats
-   (not (plats-llistats))
-   ?menus-disponibles <- (MenusCandidats)
-   =>
-   (bind ?esmorzars-disponibles (find-all-instances ((?c Plat))))
-   (bind ?dinars-disponibles (find-all-instances ((?c Plat))))
-   (bind ?sopars-disponibles (find-all-instances ((?c Plat))))
-   (assert plats-llistats)
-)
 
 ;;*******************
 ;;* QUESTIONS RULES *
@@ -76,3 +79,15 @@
   (println crlf "The Engine Diagnosis Expert System" crlf)
   (focus questions)
   )
+
+(defrule MAIN::set-focus-questions ""
+  (not (focus questions))
+  =>
+  (focus questions)
+)
+
+(defrule MAIN::set-focus-logicas ""
+  (not (focus logicas))
+  =>
+  (focus logicas)
+)

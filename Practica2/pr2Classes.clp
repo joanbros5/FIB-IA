@@ -22,20 +22,6 @@
         (create-accessor read-write))
 )
 
-(defclass MenusCandidats
-    (is-a USER)
-    (role concrete)
-    (multislot Esmorzar
-        (type INSTANCE)
-        (create-accessor read-write))
-    (multislot Dinar
-        (type INSTANCE)
-        (create-accessor read-write))
-    (multislot Sopar
-        (type INSTANCE)
-        (create-accessor read-write))
-)
-
 (defclass Apat
     (is-a USER)
     (role concrete)
@@ -82,7 +68,12 @@
     (role concrete)
     (slot quantitatCalories
         (type INSTANCE)
-        (create-accessor read-write))
+        (create-accessor read-write)
+        )
+    (multislot tipusApat
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
 )
 
 (defclass Persona
