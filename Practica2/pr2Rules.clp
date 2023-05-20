@@ -26,15 +26,41 @@
    (bind ?postres-disponibles (find-all-instances ((?c Plat)) 
                                     (member$ postre ?c:tipusApat))
    )
-;   (println crlf ?esmorzars-disponibles crlf)
-;   (println crlf ?dinars-disponibles crlf)
-;   (println crlf ?sopars-disponibles crlf)
 
-   (bind ?menu-escollit (genera-convinacions ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?total-cal))
+   (bind ?index 1)
+   (while (<= ?index 7) do
 
-   (println crlf ?menu-escollit crlf)
-   (println crlf (count_calories ?menu-escollit) crlf)
+      (bind ?menu-escollit (genera-convinacions ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?postres-disponibles ?total-cal))
 
+      (if (> ?index 1)
+            then 
+               (while (not(no-repeticions-dies-consecutius ?menu-escollit ?menu-dia-anterior)) do
+                  (bind ?menu-escollit (genera-convinacions ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?postres-disponibles ?total-cal))
+                  )
+      )
+
+      (printout t crlf "--------------------------------------")
+      (printout t crlf "--MENU " ?index crlf)
+
+
+      (printout t crlf "  Esmorzar:          " (nth$ 1 ?menu-escollit) crlf)
+      
+      (printout t crlf "  Dinar Primer Plat: " (nth$ 2 ?menu-escollit))
+      (printout t crlf "  Dinar Segon Plat:  " (nth$ 3 ?menu-escollit))
+      (printout t crlf "  Dinar Postre:      " (nth$ 4 ?menu-escollit) crlf)
+      
+      (printout t crlf "  Sopar Plat unic:   " (nth$ 5 ?menu-escollit))
+      (printout t crlf "  Sopar Postre:      " (nth$ 6 ?menu-escollit) crlf)
+      
+      (printout t crlf "  Calories totals: " (count_calories ?menu-escollit) crlf)
+
+      (printout t crlf "--------------------------------------" crlf)
+
+      (bind ?menu-dia-anterior ?menu-escollit)
+
+      (bind ?index (+ ?index 1))
+
+   )
    (focus logicas)
 )
 

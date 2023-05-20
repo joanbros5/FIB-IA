@@ -91,6 +91,10 @@
    (return TRUE)
 )
 
+(deffunction no-repeticions-dies-consecutius (?menu1 ?menu2)
+   (return (elementos-unicos (create$ ?menu1 ?menu2)))
+)
+
 (deffunction genera-convinacions (?esmorzars ?dinars ?sopars ?postres ?calories)
    
    (bind ?combinaciones (create$))
