@@ -23,9 +23,18 @@
    (bind ?sopars-disponibles (find-all-instances ((?c Plat)) 
                                     (member$ sopar ?c:tipusApat))
    )
-   (println crlf ?esmorzars-disponibles crlf)
-   (println crlf ?dinars-disponibles crlf)
-   (println crlf ?sopars-disponibles crlf)
+   (bind ?postres-disponibles (find-all-instances ((?c Plat)) 
+                                    (member$ postre ?c:tipusApat))
+   )
+;   (println crlf ?esmorzars-disponibles crlf)
+;   (println crlf ?dinars-disponibles crlf)
+;   (println crlf ?sopars-disponibles crlf)
+
+   (bind ?menu-escollit (genera-convinacions ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?total-cal))
+
+   (println crlf ?menu-escollit crlf)
+   (println crlf (count_calories ?menu-escollit) crlf)
+
    (focus logicas)
 )
 
