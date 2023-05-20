@@ -1,7 +1,7 @@
 	
-	--Prototipo práctica SBC--
+	--Prototip pràctica SBC--
 
-1) Capacitas:
+1) Capacitats:
 
 	> Generem un menú (esmorzar, dinar i sopar) per a tots els dies d'una setmana
 	> Els menús són com a mínim aproximats a les calories necessàries de la persona
