@@ -94,7 +94,7 @@
 ;        (create-accessor read-write))
 ;)
 
-# MAIN
+;# MAIN
 
 (deftemplate MAIN::persona
     (slot nom (type STRING))
@@ -110,7 +110,7 @@
     (export ?ALL)
 )
 
-# RULES
+;# RULES
 
 (defrule RECOGER_DATOS_PERSONA
     (asked-nom)
