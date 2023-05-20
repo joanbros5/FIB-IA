@@ -20,7 +20,7 @@
     (torrades_alvocat of Plat (quantitatCalories 108) (tipusApat esmorzar))
     (frankfurt of Plat (quantitatCalories 178) (tipusApat dinar sopar))
     (hamburguesa_completa of Plat (quantitatCalories 1098) (tipusApat dinar sopar))
-    (bocata salsitxes of Plat (quantitatCalories 319) (tipusApat dinar sopar))
+    (bocata_salsitxes of Plat (quantitatCalories 319) (tipusApat dinar sopar))
     (galetes_chocolata of Plat (quantitatCalories 220) (tipusApat esmorzar))
     (macarrons_formatge of Plat (quantitatCalories 996) (tipusApat dinar sopar))
     (waffles of Plat (quantitatCalories 369) (tipusApat esmorzar))
