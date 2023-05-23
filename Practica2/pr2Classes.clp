@@ -70,7 +70,27 @@
         (type INSTANCE)
         (create-accessor read-write)
         )
+    (slot quantitatCarbohidrats
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
+    (slot quantitatGreix
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
+    (slot quantitatProteines
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
     (multislot tipusApat
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
+    (multislot tipusDieta
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
+    (multislot tipusRestringibles
         (type INSTANCE)
         (create-accessor read-write)
         )

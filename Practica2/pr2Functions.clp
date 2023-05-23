@@ -1,6 +1,6 @@
 
 ;;ASKING FUNCTIONS
-(deffunction ask-allowed-values (?question $?allowed-values)
+(deffunction MAIN::ask-allowed-values (?question $?allowed-values)
    (print ?question)
    (bind ?answer (read))
    (if (lexemep ?answer) 
@@ -13,18 +13,18 @@
    ?answer
    )
 
-(deffunction ask-question (?question)
+(deffunction MAIN::ask-question (?question)
    (print ?question)
    (bind ?answer (read))
    (if (lexemep ?answer) 
        then (bind ?answer (lowcase ?answer)))
     )
 
-(deffunction valid-num (?num ?min ?max)
+(deffunction MAIN::valid-num (?num ?min ?max)
    (return (and (eq (type ?num) INTEGER) (<= ?num ?max) (>= ?num ?min)))
    )
 
-(deffunction ask-allowed-nums (?question)
+(deffunction MAIN::ask-allowed-nums (?question)
    (print ?question)
    (bind ?answer (read))
    (while (not (valid-num ?answer 65 105)) do
@@ -34,7 +34,7 @@
    ?answer
    )
 
-(deffunction m-or-f-p (?question)
+(deffunction MAIN::m-or-f-p (?question)
    (bind ?response (ask-allowed-values ?question h d))
    (if (eq ?response h)
        then h 
@@ -43,7 +43,29 @@
    )
 
 ;;CALC FUNCTIONS
-(deffunction calcul-caloric (?sexe ?edat ?na)
+
+(deffunction MAIN::random-ord (?a ?b)
+  (eq 1 (random 1 2))
+)
+
+(deffunction MAIN::random-sort (?list)
+  (sort random-ord ?list)
+)
+
+(deffunction MAIN::elements-unics (?llista)
+   (bind ?elements (create$))
+   
+   (foreach ?elem ?llista
+      (if (member$ ?elem ?elements)
+         then (return FALSE)
+         else (bind ?elements (create$ ?elements ?elem))
+      )
+   )
+   
+   (return TRUE)
+)
+
+(deffunction MAIN::calcul-caloric (?sexe ?edat ?na)
    (bind ?C 0)
    (if (eq ?sexe m)
       then 
@@ -63,39 +85,57 @@
    (return (- ?C (* 3 (- ?edat 65))))
 )
 
-(deffunction count_calories ($?plats)
-  (bind ?count 0)
+(deffunction MAIN::count-items ($?plats)
+  (bind ?countKCalories 0)
+  (bind ?countCarbohidrats 0)
+  (bind ?countGreix 0)
+  (bind ?countProteines 0)
   (foreach ?plat ?plats
     (bind ?count (+ ?count (send ?plat get-quantitatCalories)))
+    (bind ?count (+ ?count (send ?plat get-quantitatCarbohidrats)))
+    (bind ?count (+ ?count (send ?plat get-quantitatGreix)))
+    (bind ?count (+ ?count (send ?plat get-quantitatProteines)))
     )
+   (return (create$ ?countKCalories ?countCarbohidrats ?countGreix ?countProteines))
 )
 
-(deffunction MAIN::random-ord (?a ?b)
-  (eq 1 (random 1 2))
+(deffunction MAIN::no-repeticions-dies-consecutius (?menu1 ?menu2)
+   (return (elements-unics (create$ ?menu1 ?menu2)))
 )
 
-(deffunction MAIN::random-sort (?list)
-  (sort random-ord ?list)
-)
-
-(deffunction elementos-unicos (?lista)
-   (bind ?elementos (create$))
+(deffunction MAIN::menu-valid (?menu-candidat ?kcalRequerides)
    
-   (foreach ?elem ?lista
-      (if (member$ ?elem ?elementos)
-         then (return FALSE)
-         else (bind ?elementos (create$ ?elementos ?elem))
+   (bind ?all-quantitats (count-items ?menu-candidat))
+   
+   (bind ?quantitat-kcal-menu (nth$ 1 ?all-quantitats))
+   (bind ?quantitat-carbohidrats (nth$ 2 ?all-quantitats))
+   (bind ?quantitat-greix (nth$ 3 ?all-quantitats))
+   (bind ?quantitat-proteines (nth$ 4 ?all-quantitats))
+   
+   (if (and
+         (elements-unics ?menu-candidat)
+
+         (<= ?quantitat-kcal-menu (+ ?kcalRequerides 100))
+         (>= ?quantitat-kcal-menu (- ?kcalRequerides 100))
+         
+         (<= (* 0.5 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
+         (>= (* 0.6 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
+
+         (<= (* 0.3  ?kcalRequerides) (* 9 ?quantitat-greix))
+         (>= (* 0.35 ?kcalRequerides) (* 9 ?quantitat-greix))
+         
+         (<= (* 0.1  ?kcalRequerides) (* 4 ?quantitat-proteines))
+         (>= (* 0.15 ?kcalRequerides) (* 4 ?quantitat-proteines))
+         
       )
+      then
+         (return TRUE)
+      else
+         (return FALSE)
    )
-   
-   (return TRUE)
 )
 
-(deffunction no-repeticions-dies-consecutius (?menu1 ?menu2)
-   (return (elementos-unicos (create$ ?menu1 ?menu2)))
-)
-
-(deffunction genera-convinacions (?esmorzars ?dinars ?sopars ?postres ?calories)
+(deffunction MAIN::genera-convinacions (?esmorzars ?dinars ?sopars ?postres ?kcalRequerides)
    
    (bind ?combinaciones (create$))
 
@@ -108,11 +148,7 @@
 
          (bind ?menu-candidat (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
 
-         (if (and 
-               (elementos-unicos ?menu-candidat)
-               (<= (count_calories ?menu-candidat) (+ ?calories 200))
-               (>= (count_calories ?menu-candidat) (- ?calories 200))
-               )
+         (if (menu-valid ?menu-candidat ?kcalRequerides)
                then (return ?menu-candidat)
                )
       )

@@ -19,6 +19,5 @@
 (defmodule prints
 	(import MAIN ?ALL)
 	(import questions ?ALL)
-;	(import calc_data ?ALL)	
 	(export ?ALL)
 )

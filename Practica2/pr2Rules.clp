@@ -56,7 +56,12 @@
       (printout t crlf "  Sopar Plat unic:   " (nth$ 5 ?menu-escollit))
       (printout t crlf "  Sopar Postre:      " (nth$ 6 ?menu-escollit) crlf)
       
-      (printout t crlf "  Calories totals: " (count_calories ?menu-escollit) crlf)
+      (bind ?dades-menu-escollit (count-items ?menu-escollit))
+
+      (printout t crlf "  Calories totals:     " (nth$ 1 ?dades-menu-escollit) crlf)
+      (printout t crlf "  Carbohidrats totals: " (nth$ 2 ?dades-menu-escollit) crlf)
+      (printout t crlf "  Greix total:         " (nth$ 3 ?dades-menu-escollit) crlf)
+      (printout t crlf "  Proteines totals:    " (nth$ 4 ?dades-menu-escollit) crlf)
 
       ;(printout t crlf "--------------------------------" crlf)
 

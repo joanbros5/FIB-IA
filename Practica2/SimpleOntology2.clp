@@ -216,3 +216,56 @@
 ;   )
 )
 
+
+
+
+;;Proporción hidratos de carbono;;
+
+1g de Hidratos de Carbono -> 4kCal
+50/60% de la dieta
+
+1g FAT -> 9kCal
+30/35% de la dieta
+
+1g Proteinas -> 4kCalorias
+12/15% de la dieta
+
+;;Tipus d'Alergens
+.   Ou
+.   Lactics
+.   Blat
+
+
+;;Tipus de dietes
+.   Vegetariana
+.   Mediterranea(tres plats de carn maxim)
+.   Sense fregits
+.   Sense carn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
