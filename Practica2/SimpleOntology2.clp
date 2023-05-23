@@ -238,6 +238,7 @@
 
 ;;Tipus de dietes
 .   Vegetariana
+.   Vegana
 .   Mediterranea(tres plats de carn maxim)
 .   Sense fregits
 .   Sense carn

@@ -90,10 +90,15 @@
         (type INSTANCE)
         (create-accessor read-write)
         )
-    (multislot tipusRestringibles
+    (multislot ingredientsPrincipals
         (type INSTANCE)
         (create-accessor read-write)
         )
+    (multislot temporada
+        (type INSTANCE)
+        (create-accessor read-write)
+        )
+
 )
 
 (defclass Persona
