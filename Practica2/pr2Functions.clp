@@ -1,4 +1,30 @@
 
+
+;;EASY FUNCTIONS
+
+(deffunction MAIN::random-ord (?a ?b)
+  (eq 1 (random 1 2))
+)
+
+(deffunction MAIN::random-sort (?list)
+  (sort random-ord ?list)
+)
+
+(deffunction MAIN::elements-unics (?llista)
+   (bind ?elements (create$))
+   
+   (foreach ?elem ?llista
+      (if (member$ ?elem ?elements)
+         then (return FALSE)
+         else (bind ?elements (create$ ?elements ?elem))
+      )
+   )
+   
+   (return TRUE)
+)
+
+
+
 ;;ASKING FUNCTIONS
 (deffunction MAIN::ask-allowed-values (?question $?allowed-values)
    (print ?question)
@@ -42,28 +68,71 @@
        )
    )
 
-;;CALC FUNCTIONS
+(deffunction MAIN::traducció (?char)
 
-(deffunction MAIN::random-ord (?a ?b)
-  (eq 1 (random 1 2))
-)
-
-(deffunction MAIN::random-sort (?list)
-  (sort random-ord ?list)
-)
-
-(deffunction MAIN::elements-unics (?llista)
-   (bind ?elements (create$))
-   
-   (foreach ?elem ?llista
-      (if (member$ ?elem ?elements)
-         then (return FALSE)
-         else (bind ?elements (create$ ?elements ?elem))
-      )
+   (if (eq ?char es)
+      then (return estiu)
    )
-   
-   (return TRUE)
+   (if (eq ?char pr)
+      then (return primavera)
+   )
+   (if (eq ?char ta)
+      then (return tardor)
+   )
+   (if (eq ?char hi)
+      then (return hivern)
+   )
+
+   (if (eq ?char n)
+      then (return no)
+   )
+   (if (eq ?char o)
+      then (return ou)
+   )
+   (if (eq ?char l)
+      then (return lactic)
+   )
+   (if (eq ?char g)
+      then (return gluten)
+   )
+
+   (if (eq ?char c)
+      then (return ceba)
+   )
+   (if (eq ?char p)
+      then (return pebrot)
+   )
+   (if (eq ?char ca)
+      then (return cacau)
+   )
+   (if (eq ?char m)
+      then (return marisc)
+   )
+   (if (eq ?char t)
+      then (return tomaquet)
+   )
+   (if (eq ?char f)
+      then (return fregit)
+   )
+   (if (eq ?char cr)
+      then (return carn)
+   )
+   (if (eq ?char px)
+      then (return peix)
+   )
+
+   (if (eq ?char ve)
+      then (return vegetariana)
+   )
+   (if (eq ?char me)
+      then (return mediterranea)
+   )
+   (if (eq ?char smb)
+      then (return sense-menjar-brossa)
+   )
 )
+
+
 
 (deffunction MAIN::calcul-caloric (?sexe ?edat ?na)
    (bind ?C 0)
@@ -97,10 +166,6 @@
     (bind ?count (+ ?count (send ?plat get-quantitatProteines)))
     )
    (return (create$ ?countKCalories ?countCarbohidrats ?countGreix ?countProteines))
-)
-
-(deffunction MAIN::no-repeticions-dies-consecutius (?menu1 ?menu2)
-   (return (elements-unics (create$ ?menu1 ?menu2)))
 )
 
 (deffunction MAIN::menu-valid (?menu-candidat ?kcalRequerides)
@@ -158,5 +223,10 @@
       )
    )
 )
+
+(deffunction MAIN::no-repeticions-dies-consecutius (?menu1 ?menu2)
+   (return (elements-unics (create$ ?menu1 ?menu2)))
+)
+
 
 

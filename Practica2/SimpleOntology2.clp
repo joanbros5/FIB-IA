@@ -233,17 +233,22 @@
 ;;Tipus d'Alergens
 .   Ou
 .   Lactics
-.   Blat
+.   Gluten
 
+Aliments restringibles:
+.   ceba
+.   pebrot
+.   cacao
+.   marisc
+.   tomaquet
+.   fregits
+.   carn
+.   peix
 
 ;;Tipus de dietes
 .   Vegetariana
 .   Vegana
 .   Mediterranea(tres plats de carn maxim)
-.   Sense fregits
-.   Sense carn
-
-
 
 
 

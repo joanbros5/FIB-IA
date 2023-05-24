@@ -90,7 +90,7 @@
         (type INSTANCE)
         (create-accessor read-write)
         )
-    (multislot ingredientsPrincipals
+    (multislot ingredients
         (type INSTANCE)
         (create-accessor read-write)
         )
