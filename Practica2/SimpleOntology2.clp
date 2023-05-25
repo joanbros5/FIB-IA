@@ -231,6 +231,7 @@
 12/15% de la dieta
 
 ;;Tipus d'Alergens
+.   Ou
 .   Lactics
 .   Gluten
 
@@ -240,21 +241,29 @@ Aliments restringibles:
 .   cacao
 .   marisc
 .   tomaquet
-.   fregit
+.   fregits
 .   carn
 .   peix
-.   Ou
 
 ;;Tipus de dietes
 .   Vegetariana
 .   Vegana
-.   Mediterranea (tres plats de carn maxim)
+.   Mediterranea(tres plats de carn maxim)
 
 
 
 
+(defrule MAIN::first-questions ""
+  (not (focus questions))
+  =>
+  (focus questions)
+)
 
-
+(defrule MAIN::set-focus-logicas ""
+  (not (focus logicas))
+  =>
+  (focus logicas)
+)
 
 
 
