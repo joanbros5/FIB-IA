@@ -61,14 +61,14 @@
    )
 
 (deffunction MAIN::m-or-f-p (?question)
-   (bind ?response (ask-allowed-values ?question h d))
+   (bind ?response (ask-allowed-values ?question home dona))
    (if (eq ?response h)
-       then h 
+       then h
        else d
        )
    )
 
-(deffunction MAIN::traducció (?char)
+(deffunction MAIN::traduccio-char (?char)
 
    (if (eq ?char es)
       then (return estiu)
@@ -93,7 +93,7 @@
       then (return lactic)
    )
    (if (eq ?char g)
-      then (return gluten)
+      then (return blat)
    )
 
    (if (eq ?char c)
@@ -124,11 +124,14 @@
    (if (eq ?char ve)
       then (return vegetariana)
    )
+   (if (eq ?char vg)
+      then (return vegana)
+   )
    (if (eq ?char me)
       then (return mediterranea)
    )
    (if (eq ?char smb)
-      then (return sense-menjar-brossa)
+      then (return mb)
    )
 )
 
@@ -136,7 +139,7 @@
 
 (deffunction MAIN::calcul-caloric (?sexe ?edat ?na)
    (bind ?C 0)
-   (if (eq ?sexe m)
+   (if (eq ?sexe h)
       then 
             (bind ?C 2600)
       else
@@ -155,23 +158,22 @@
 )
 
 (deffunction MAIN::count-items ($?plats)
-  (bind ?countKCalories 0)
-  (bind ?countCarbohidrats 0)
-  (bind ?countGreix 0)
-  (bind ?countProteines 0)
+  (bind ?count_kcal 0)
+  (bind ?count_hc 0)
+  (bind ?count_fat 0)
+  (bind ?count_pro 0)
   (foreach ?plat ?plats
-    (bind ?count (+ ?count (send ?plat get-quantitatCalories)))
-    (bind ?count (+ ?count (send ?plat get-quantitatCarbohidrats)))
-    (bind ?count (+ ?count (send ?plat get-quantitatGreix)))
-    (bind ?count (+ ?count (send ?plat get-quantitatProteines)))
+    (bind ?count_kcal (+ ?count_kcal (send ?plat get-quantitatCalories)))
+    (bind ?count_hc (+ ?count_hc (send ?plat get-quantitatCarbohidrats)))
+    (bind ?count_fat (+ ?count_fat (send ?plat get-quantitatGreix)))
+    (bind ?count_pro (+ ?count_pro (send ?plat get-quantitatProteines)))
     )
-   (return (create$ ?countKCalories ?countCarbohidrats ?countGreix ?countProteines))
+   (return (create$ ?count_kcal ?count_hc ?count_fat ?count_pro))
 )
 
 (deffunction MAIN::menu-valid (?menu-candidat ?kcalRequerides)
    
    (bind ?all-quantitats (count-items ?menu-candidat))
-   
    (bind ?quantitat-kcal-menu (nth$ 1 ?all-quantitats))
    (bind ?quantitat-carbohidrats (nth$ 2 ?all-quantitats))
    (bind ?quantitat-greix (nth$ 3 ?all-quantitats))
@@ -180,8 +182,8 @@
    (if (and
          (elements-unics ?menu-candidat)
 
-         (<= ?quantitat-kcal-menu (+ ?kcalRequerides 100))
-         (>= ?quantitat-kcal-menu (- ?kcalRequerides 100))
+         (<= ?quantitat-kcal-menu (+ ?kcalRequerides 200))
+         (>= ?quantitat-kcal-menu (- ?kcalRequerides 200))
          
          (<= (* 0.5 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
          (>= (* 0.6 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
@@ -213,7 +215,10 @@
 
          (bind ?menu-candidat (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
 
-         (if (menu-valid ?menu-candidat ?kcalRequerides)
+         (if (and
+            (elements-unics ?menu-candidat)
+            (menu-valid ?menu-candidat ?kcalRequerides)
+            )
                then (return ?menu-candidat)
                )
       )
@@ -227,6 +232,115 @@
 (deffunction MAIN::no-repeticions-dies-consecutius (?menu1 ?menu2)
    (return (elements-unics (create$ ?menu1 ?menu2)))
 )
+
+(deffunction MAIN::assig-joc-de-proves (?item ?num-joc)
+   (if (= ?num-joc 1)
+      then 
+         (if (eq ?item nom)
+            then 
+               (return alexa)
+         )
+         (if (eq ?item sexe)
+            then 
+               (return dona)
+         )
+         (if (eq ?item edat)
+            then 
+               (return 105)
+         )
+         (if (eq ?item nv_act)
+            then 
+               (return ma)
+         )
+         (if (eq ?item temporada)
+            then 
+               (return hi)
+         )
+         (if (eq ?item alergies)
+            then 
+               (return n)
+         )
+         (if (eq ?item alimentsEvitats)
+            then 
+               (return n)
+         )
+         (if (eq ?item dieta)
+            then 
+               (return smb)
+         )
+   )
+   (if (= ?num-joc 2)
+      then 
+         (if (eq ?item nom)
+            then 
+               (return joan)
+         )
+         (if (eq ?item sexe)
+            then 
+               (return home)
+         )
+         (if (eq ?item edat)
+            then 
+               (return 95)
+         )
+         (if (eq ?item nv_act)
+            then 
+               (return s)
+         )
+         (if (eq ?item temporada)
+            then 
+               (return ta)
+         )
+         (if (eq ?item alergies)
+            then 
+               (return o)
+         )
+         (if (eq ?item alimentsEvitats)
+            then 
+               (return m)
+         )
+         (if (eq ?item dieta)
+            then 
+               (return smb)
+         )
+   )
+   (if (= ?num-joc 3)
+      then 
+         (if (eq ?item nom)
+            then 
+               (return manel)
+         )
+         (if (eq ?item sexe)
+            then 
+               (return home)
+         )
+         (if (eq ?item edat)
+            then 
+               (return 85)
+         )
+         (if (eq ?item nv_act)
+            then 
+               (return ma)
+         )
+         (if (eq ?item temporada)
+            then 
+               (return hi)
+         )
+         (if (eq ?item alergies)
+            then 
+               (return o)
+         )
+         (if (eq ?item alimentsEvitats)
+            then 
+               (return f)
+         )
+         (if (eq ?item dieta)
+            then 
+               (return vg)
+         )
+   )
+)
+
 
 
 

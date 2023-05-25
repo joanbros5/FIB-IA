@@ -253,6 +253,17 @@ Aliments restringibles:
 
 
 
+(defrule MAIN::first-questions ""
+  (not (focus questions))
+  =>
+  (focus questions)
+)
+
+(defrule MAIN::set-focus-logicas ""
+  (not (focus logicas))
+  =>
+  (focus logicas)
+)
 
 
 
