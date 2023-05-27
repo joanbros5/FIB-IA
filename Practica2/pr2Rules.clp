@@ -202,8 +202,13 @@
   =>
   (if (= ?num-joc 0)
       then
+<<<<<<< Updated upstream
          (assert (alimentsEvitats (ask-allowed-values "D'aquests tipus d'aliments, vols evitar-ne algun? (no vull evitar-ne cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m) / tomaquet (t) / fregits (f) / carn (cr) / peix (px))? "
                   n c p ca m t f cr px)))
+=======
+         (assert (alimentsEvitats (ask-aliments "D'aquests tipus d'aliments, vols evitar-ne algun? (no vull evitar-ne cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m) / tomaquet (t) / fregits (f) / carn (cr) / peix (px))? "
+                 n c p ca m t f cr px)))
+>>>>>>> Stashed changes
       else
          (assert (alimentsEvitats (assig-joc-de-proves alimentsEvitats ?num-joc)))
    )

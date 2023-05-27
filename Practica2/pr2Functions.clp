@@ -39,6 +39,42 @@
    ?answer
    )
 
+(deffunction MAIN::ask-aliments (?question $?allowed-values)
+   (print ?question)
+   (bind ?answer (read))
+   (if (lexemep ?answer) 
+       then (bind ?answer (lowcase ?answer)))
+
+   (while (not (member$ ?answer ?allowed-values)) do
+      (print ?question)
+      (bind ?answer (read))
+      (if (lexemep ?answer)
+          then (bind ?answer (lowcase ?answer))))
+
+   (bind ?multi-answer ?answer)
+
+   (while (and 
+            (member$ ?answer ?allowed-values)
+            (neq ?answer n)) do
+      (print "Hi ha algun altre aliment que no vulgis? Escriu el codi corsponent, en cas contrari n" crlf)
+      (bind ?answer (read))
+      
+      (if (lexemep ?answer)
+          then (bind ?answer (lowcase ?answer)))
+      (while (not (member$ ?answer ?allowed-values)) do
+         (print "Hi ha algun altre aliment que no vulgis? Escriu el codi corsponent, en cas contrari n" crlf)
+         (bind ?answer (read))
+         (if (lexemep ?answer)
+            then (bind ?answer (lowcase ?answer))
+            )
+         )
+
+      (bind ?multi-answer (create$ ?multi-answer ?answer))
+   )
+
+   ?multi-answer
+)
+
 (deffunction MAIN::ask-question (?question)
    (print ?question)
    (bind ?answer (read))
