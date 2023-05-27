@@ -35,7 +35,7 @@
                            (send ?c delete)
          )
 
-   (do-for-all-instances ((?c Plat)) (member$ (traduccio-multi ?ae) ?c:ingredients)
+   (do-for-all-instances ((?c Plat)) (member$ (traduccio ?ae) ?c:ingredients)
                            (send ?c delete)
          )
 
