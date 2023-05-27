@@ -50,32 +50,6 @@
    (return (and (eq (type ?num) INTEGER) (<= ?num ?max) (>= ?num ?min)))
    )
 
-(deffunction MAIN::ask-question-multi-opt (?question ?allowed-values)
-  (while TRUE do ;return function will exit this loop
-    (printout t "| > " ?question " ")
-    (loop-for-count (?i 1 (length$ $?allowed-values)) do
-      (printout t crlf tab ?i ") " (nth$ ?i $?allowed-values))
-    )
-    (printout t crlf "| ")
-    (bind ?line (readline))
-    (bind $?answer (explode$ ?line))
-    (bind ?out (create$))
-    (foreach ?i ?answer
-      (if (not (valid-num ?i 1 (length$ $?allowed-values))) then
-        (break)
-      )
-      (bind ?v (nth$ ?i ?allowed-values))
-      (if (not (member$ ?v ?out)) then
-        (bind ?out (create$ ?out ?v))
-      )
-    )
-    (if (eq (length$ ?out) (length$ ?answer)) then
-      (return ?out)
-      else (printout t "| ## Invalid input ##" crlf)
-    )
-    )
-)
-
 (deffunction MAIN::ask-allowed-nums (?question)
    (print ?question)
    (bind ?answer (read))
@@ -94,41 +68,7 @@
        )
    )
 
-(deffunction MAIN::traduccio-multi (?aliments)
-
-   (bind ?list (create$))
-   (foreach ?char ?aliments
-
-      (if (eq ?char c)
-         then (bind ?list (create$ ?list ceba))
-      )
-      (if (eq ?char p)
-         then (bind ?list (create$ ?list pebrot))
-      )
-      (if (eq ?char ca)
-         then (bind ?list (create$ ?list cacau))
-      )
-      (if (eq ?char m)
-         then (bind ?list (create$ ?list marisc))
-      )
-      (if (eq ?char t)
-         then (bind ?list (create$ ?list tomaquet))
-      )
-      (if (eq ?char f)
-         then (bind ?list (create$ ?list fregit))
-      )
-      (if (eq ?char cr)
-         then (bind ?list (create$ ?list carn))
-      )
-      (if (eq ?char px)
-         then (bind ?list (create$ ?list peix))
-      )
-   )
-
-   (return ?list)
-)
-
-(deffunction MAIN::traduccio (?char)
+(deffunction MAIN::traduccio-char (?char)
 
    (if (eq ?char es)
       then (return estiu)
@@ -240,6 +180,7 @@
    (bind ?quantitat-proteines (nth$ 4 ?all-quantitats))
    
    (if (and
+         (elements-unics ?menu-candidat)
 
          (<= ?quantitat-kcal-menu (+ ?kcalRequerides 200))
          (>= ?quantitat-kcal-menu (- ?kcalRequerides 200))
@@ -263,26 +204,25 @@
 
 (deffunction MAIN::genera-convinacions (?esmorzars ?dinars ?sopars ?postres ?kcalRequerides)
    
+   (bind ?combinaciones (create$))
+
    (foreach ?e (random-sort ?esmorzars)
       (foreach ?d1 (random-sort ?dinars)
       (foreach ?d2 (random-sort ?dinars)
-      (if (neq ?d1 ?d2) 
-         then
-         (foreach ?dp (random-sort ?postres)
-         (foreach ?s1 (random-sort ?sopars)
-         (foreach ?sp (random-sort ?postres)
+      (foreach ?dp (random-sort ?postres)
+      (foreach ?s1 (random-sort ?sopars)
+      (foreach ?sp (random-sort ?postres)
 
-            (bind ?menu-candidat (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
+         (bind ?menu-candidat (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
 
-            (if (and
-               (elements-unics ?menu-candidat)
-               (menu-valid ?menu-candidat ?kcalRequerides)
+         (if (and
+            (elements-unics ?menu-candidat)
+            (menu-valid ?menu-candidat ?kcalRequerides)
+            )
+               then (return ?menu-candidat)
                )
-                  then (return ?menu-candidat)
-                  )
-         )
-         )
-         )
+      )
+      )
       )
       )
       )
@@ -326,7 +266,7 @@
          )
          (if (eq ?item dieta)
             then 
-               (return vt)
+               (return smb)
          )
    )
    (if (= ?num-joc 2)
@@ -361,7 +301,7 @@
          )
          (if (eq ?item dieta)
             then 
-               (return me)
+               (return smb)
          )
    )
    (if (= ?num-joc 3)
@@ -392,36 +332,13 @@
          )
          (if (eq ?item alimentsEvitats)
             then 
-               (return (create$ f c p))
+               (return f)
          )
          (if (eq ?item dieta)
             then 
                (return vg)
          )
    )
-)
-
-(deffunction MAIN::plat-valid (?plat ?t ?d)
-   (if (member$ ?t (send ?plat get-temporada))
-            then (return TRUE)
-            else (return FALSE)
-            )
-)
-
-(deffunction MAIN::resvisio-temporada-dieta (?plats ?t ?d)
-   (bind ?plats-definitius (create$))
-   
-   (foreach ?plat ?plats
-      (if 
-         (and
-            (member$ ?t (send ?plat get-temporada))
-            (member$ ?d (send ?plat get-tipusDieta))
-            )
-         then
-            (bind ?plats-definitius (create$ ?plats-definitius ?plat))
-         )
-      )
-   (return ?plats-definitius)
 )
 
 

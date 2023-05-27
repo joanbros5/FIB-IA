@@ -8,18 +8,13 @@
         (create-accessor read-write))
 )
 
-(defclass MenuDiari
-    (is-a USER)
-    (role concrete)
+(deftemplate MAIN::MenuDiari
     (slot Esmorzar
-        (type INSTANCE)
-        (create-accessor read-write))
-    (slot Dinar
-        (type INSTANCE)
-        (create-accessor read-write))
-    (slot Sopar
-        (type INSTANCE)
-        (create-accessor read-write))
+        (type INSTANCE))
+    (multislot Dinar
+        (type INSTANCE))
+    (multislot Sopar
+        (type INSTANCE))
 )
 
 (defclass Apat

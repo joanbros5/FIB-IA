@@ -31,25 +31,13 @@
    (println crlf "Calories al dia aproximades per a " ?n ": " ?total-cal)
    (printout t "-\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/-" crlf)
 
-   (if (eq ?d smb)
-      then
-         (do-for-all-instances ((?c Plat)) (member$ traduccio-?d ?c:tipusDieta)
+   (do-for-all-instances ((?c Plat)) (member$ (traduccio ?a) ?c:ingredients)
                            (send ?c delete)
          )
-      else
-         (do-for-all-instances ((?c Plat)) (not (member$ traduccio-?d ?c:tipusDieta))
-                           (send ?c delete)
-         )
-   )
 
-   (do-for-all-instances ((?c Plat)) 
-                           (and
-                              (not (member$ traduccio-?t ?c:temporada))
-                              (member$ traduccio-?a ?c:ingredients)
-                              (member$ traduccio-?ae ?c:ingredients)
-                           )
+   (do-for-all-instances ((?c Plat)) (member$ (traduccio-multi ?ae) ?c:ingredients)
                            (send ?c delete)
-   )
+         )
 
    (bind ?esmorzars-disponibles (find-all-instances ((?c Plat)) 
                                     (member$ esmorzar ?c:tipusApat)
@@ -67,6 +55,11 @@
                                     (member$ postre ?c:tipusApat)
                                     )
    )
+
+   (bind ?esmorzars-disponibles (resvisio-temporada-dieta ?esmorzars-disponibles (traduccio ?t) (traduccio ?d)))
+   (bind ?dinars-disponibles (resvisio-temporada-dieta ?dinars-disponibles (traduccio ?t) (traduccio ?d)))
+   (bind ?sopars-disponibles (resvisio-temporada-dieta ?sopars-disponibles (traduccio ?t) (traduccio ?d)))
+   (bind ?postres-disponibles (resvisio-temporada-dieta ?postres-disponibles (traduccio ?t) (traduccio ?d)))
 
    (printout t ?esmorzars-disponibles crlf)
    (printout t ?dinars-disponibles crlf)
@@ -202,13 +195,12 @@
   =>
   (if (= ?num-joc 0)
       then
-         (assert (alimentsEvitats (ask-allowed-values "D'aquests tipus d'aliments, vols evitar-ne algun? (no vull evitar-ne cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m) / tomaquet (t) / fregits (f) / carn (cr) / peix (px))? "
-                  n c p ca m t f cr px)))
+         (assert (alimentsEvitats (ask-question-multi-opt "D'aquests tipus d'aliments, vols evitar-ne algun? (no vull evitar-ne cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m) / tomaquet (t) / fregits (f) / carn (cr) / peix (px))? "
+                 (create$ n c p ca m t f cr px))))
       else
          (assert (alimentsEvitats (assig-joc-de-proves alimentsEvitats ?num-joc)))
    )
 )
-
 
 (defrule questions::ask-dieta ""
   (not (dieta ?))
@@ -234,19 +226,6 @@
 ;;**************
 ;;* TEST RULES *
 ;;**************
-
-(defrule prints::print ""
-  (declare (salience 10))
-  (nom ?n)
-  (sexe ?s)
-  (edad ?e)
-  (nvactivitat ?na)
-  =>
-  (println crlf "Nom:" ?n crlf)
-  (println crlf "Sexe:" ?s crlf)
-  (println crlf "Edat:" ?e crlf)
-  (println crlf "Nivell d'activitat:" ?na crlf)
-  )
 
 (defrule MAIN::system-banner ""
   (declare (salience 10))

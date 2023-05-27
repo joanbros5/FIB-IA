@@ -267,13 +267,38 @@ Aliments restringibles:
 
 
 
+   (if (eq ?d smb)
+      then
+         (do-for-all-instances ((?c Plat)) (member$ traduccio-?d ?c:tipusDieta)
+                           (send ?c delete)
+         )
+      else
+         (do-for-all-instances ((?c Plat)) (not (member$ traduccio-?d ?c:tipusDieta))
+                           (send ?c delete)
+         )
+   )
+
+
+   (do-for-all-instances ((?c Plat)) 
+               (or
+                  (not  (member$ (traduccio ?t) ?c:temporada))
+                  (not  (member$ (traduccio ?d) ?c:tipusDieta))
+                        (member$ (traduccio ?a) ?c:ingredients)
+                        (member$ (traduccio ?ae) ?c:ingredients)
+               )
+               (send ?c delete)
+   )
 
 
 
+      ?menu-prova <- (MenuDiari
+                        (Esmorzar (nth$ 1 ?menu-escollit))
+                        (Dinar (nth$ 2 ?menu-escollit) (nth$ 3 ?menu-escollit) (nth$ 4 ?menu-escollit))
+                        (Sopar (nth$ 5 ?menu-escollit) (nth$ 6 ?menu-escollit))
+      )
 
 
-
-
+(traduccio ?t) (traduccio ?a) (traduccio ?ae) (traduccio ?d)
 
 
 
