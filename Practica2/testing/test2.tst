@@ -1,10 +1,10 @@
 (batch "testing.clp.bat")
 
-alexa
-105
+anna
+99
 dona
-ma
+s
 hi
-n
+g
 n
 vt

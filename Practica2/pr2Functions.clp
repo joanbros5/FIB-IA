@@ -45,14 +45,12 @@
 (deffunction MAIN::ask-question (?question)
    (print ?question)
    (bind ?answer (read))
-   (if (lexemep ?answer)
-       then (bind ?answer (lowcase ?answer)))
-    )
+   )
 
 (deffunction MAIN::ask-allowed-nums (?question)
    (print ?question)
    (bind ?answer (read))
-   (while (not (valid-num ?answer 65 105)) do
+   (while (not (valid-num ?answer 2 105)) do
       (print ?question)
       (bind ?answer (read))
       )
@@ -61,7 +59,7 @@
 
 (deffunction MAIN::ask-home-dona (?question)
    (bind ?response (ask-allowed-values ?question home dona))
-   (if (eq ?response h)
+   (if (eq ?response home)
        then h
        else d
        )
@@ -159,6 +157,82 @@
    (return (- ?C (* 3 (- ?edat 65))))
 )
 
+(deffunction MAIN::calcul-caloric-new (?sexe ?edat ?na)
+   (bind ?C 2600)
+   (if (eq ?sexe h)
+      then
+            (if (and (> ?edat 50) (< ?edat 105))
+               	then
+                    	(bind ?C 2750)
+            )
+            (if (and (> ?edat 30) (< ?edat 51))
+               	then
+			(bind ?C 2950)
+            )
+	    (if (and (> ?edat 18) (< ?edat 31))
+               	then
+			(bind ?C 3000)
+            )
+            (if (and (> ?edat 13) (< ?edat 19))
+               	then
+			(bind ?C 3100)
+            )
+            (if (and (> ?edat 8) (< ?edat 14))
+               	then
+			(bind ?C 2550)
+            )
+            (if (and (> ?edat 3) (< ?edat 9))
+               	then
+			(bind ?C 1950)
+            )
+            (if (and (> ?edat 1) (< ?edat 4))
+               	then
+			(bind ?C 1000)
+            )
+    )
+    (if (eq ?sexe d)
+        then
+            (if (and (> ?edat 50) (< ?edat 106))
+               	then
+                    	(bind ?C 2150)
+            )
+            (if (and (> ?edat 30) (< ?edat 51))
+               	then
+			(bind ?C 2200)
+            )
+	    (if (and (> ?edat 18) (< ?edat 31))
+               	then
+			(bind ?C 2400)
+            )
+            (if (and (> ?edat 13) (< ?edat 19))
+               	then
+			(bind ?C 2400)
+            )
+            (if (and (> ?edat 8) (< ?edat 14))
+               	then
+			(bind ?C 2150)
+            )
+            (if (and (> ?edat 3) (< ?edat 9))
+               	then
+			(bind ?C 1750)
+            )
+            (if (and (> ?edat 1) (< ?edat 4))
+               	then
+			(bind ?C 1000)
+            )
+     )
+   (if (not (eq ?na ma))
+      then
+            (if (eq ?na s)
+               then
+                     (bind ?C (- ?C 400))
+               else
+                     (bind ?C (- ?C 200))
+               )
+   )
+   (return (- ?C ?edat))
+)
+
 (deffunction MAIN::count-items ($?plats)
   (bind ?count_kcal 0)
   (bind ?count_hc 0)
@@ -173,7 +247,7 @@
    (return (create$ ?count_kcal ?count_hc ?count_fat ?count_pro))
 )
 
-(deffunction MAIN::menu-valid (?menu-candidat ?kcalRequerides)
+(deffunction MAIN::menu-valid (?menu-candidat ?kcalRequerides ?margeCal)
 
    (bind ?all-quantitats (count-items ?menu-candidat))
    (bind ?quantitat-kcal-menu (nth$ 1 ?all-quantitats))
@@ -183,8 +257,8 @@
 
    (if (and
 
-         (<= ?quantitat-kcal-menu (+ ?kcalRequerides 200))
-         (>= ?quantitat-kcal-menu (- ?kcalRequerides 200))
+         (<= ?quantitat-kcal-menu (+ ?kcalRequerides ?margeCal))
+         (>= ?quantitat-kcal-menu (- ?kcalRequerides ?margeCal))
 
          (<= (* 0.5 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
          (>= (* 0.6 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
@@ -203,32 +277,32 @@
    )
 )
 
+(deffunction MAIN::genera-menu-random (?esmorzars ?dinars ?sopars ?postres)
+
+   (bind ?e (nth$ (random 1 (length$ ?esmorzars)) ?esmorzars))
+   (bind ?d1 (nth$ (random 1 (length$ ?dinars)) ?dinars))
+   (bind ?d2 (nth$ (random 1 (length$ ?dinars)) ?dinars))
+   (bind ?dp (nth$ (random 1 (length$ ?postres)) ?postres))
+   (bind ?s1 (nth$ (random 1 (length$ ?sopars)) ?sopars))
+   (bind ?sp (nth$ (random 1 (length$ ?postres)) ?postres)) 
+
+   (return (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
+)
+
 (deffunction MAIN::genera-convinacions (?esmorzars ?dinars ?sopars ?postres ?kcalRequerides)
 
-   (foreach ?e (random-sort ?esmorzars)
-      (foreach ?d1 (random-sort ?dinars)
-      (foreach ?d2 (random-sort ?dinars)
-      (if (neq ?d1 ?d2)
-         then
-         (foreach ?dp (random-sort ?postres)
-         (foreach ?s1 (random-sort ?sopars)
-         (foreach ?sp (random-sort ?postres)
 
-            (bind ?menu-candidat (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
-
-            (if (and
+   (bind ?menu-candidat (genera-menu-random ?esmorzars ?dinars ?sopars ?postres))
+   (bind ?marge 50)
+   (while (not (and
                (elements-unics ?menu-candidat)
-               (menu-valid ?menu-candidat ?kcalRequerides)
-               )
-                  then (return ?menu-candidat)
-                  )
-         )
-         )
-         )
+               (menu-valid ?menu-candidat ?kcalRequerides ?marge)
+               )) do
+               (bind ?menu-candidat (genera-menu-random ?esmorzars ?dinars ?sopars ?postres))
+               (bind ?marge (+ ?marge 1))
       )
-      )
-      )
-   )
+
+   (return ?menu-candidat)
 )
 
 ;; REVING MENU FUNCTIONS

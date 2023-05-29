@@ -51,7 +51,7 @@
    (bind ?sopars-disponibles (resvisio-temporada-dieta ?sopars-disponibles (traduccio ?t) (traduccio ?d)))
    (bind ?postres-disponibles (resvisio-temporada-dieta ?postres-disponibles (traduccio ?t) (traduccio ?d)))
 
-   (bind ?total-cal (calcul-caloric ?s ?e ?na))
+   (bind ?total-cal (calcul-caloric-new ?s ?e ?na))
 
    (printout t crlf crlf "-/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\-")
    (println crlf "Calories al dia aproximades per a " ?n ": " ?total-cal)

@@ -1,10 +1,10 @@
 (batch "testing.clp.bat")
 
-manel
-85
-home
-ma
-hi
-o
-f
-vg
+maria
+105
+dona
+s
+ta
+l
+c
+n
