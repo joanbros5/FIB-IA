@@ -78,9 +78,13 @@
 (deffunction MAIN::ask-question (?question)
    (print ?question)
    (bind ?answer (read))
+<<<<<<< Updated upstream
    (if (lexemep ?answer) 
        then (bind ?answer (lowcase ?answer)))
     )
+=======
+   )
+>>>>>>> Stashed changes
 
 (deffunction MAIN::valid-num (?num ?min ?max)
    (return (and (eq (type ?num) INTEGER) (<= ?num ?max) (>= ?num ?min)))
@@ -265,6 +269,38 @@
    )
 )
 
+<<<<<<< Updated upstream
+=======
+(deffunction MAIN::genera-menu-random (?esmorzars ?dinars ?sopars ?postres)
+
+   (bind ?e (nth$ (random 1 (length$ ?esmorzars)) ?esmorzars))
+   (bind ?d1 (nth$ (random 1 (length$ ?dinars)) ?dinars))
+   (bind ?d2 (nth$ (random 1 (length$ ?dinars)) ?dinars))
+   (bind ?dp (nth$ (random 1 (length$ ?postres)) ?postres))
+   (bind ?s1 (nth$ (random 1 (length$ ?sopars)) ?sopars))
+   (bind ?sp (nth$ (random 1 (length$ ?postres)) ?postres)) 
+   
+   (return (create$ ?e ?d1 ?d2 ?dp ?s1 ?sp))
+)
+
+(deffunction MAIN::genera-convinacions-random (?esmorzars ?dinars ?sopars ?postres ?kcalRequerides)
+
+   
+   (bind ?menu-candidat (genera-menu-random ?esmorzars ?dinars ?sopars ?postres))
+
+   (while (not (and
+               (elements-unics ?menu-candidat)
+               (menu-valid ?menu-candidat ?kcalRequerides)
+               )) do
+               (bind ?menu-candidat (genera-menu-random ?esmorzars ?dinars ?sopars ?postres))
+      )
+      
+   (return ?menu-candidat)
+)
+
+;; REVING MENU FUNCTIONS
+
+>>>>>>> Stashed changes
 (deffunction MAIN::no-repeticions-dies-consecutius (?menu1 ?menu2)
    (return (elements-unics (create$ ?menu1 ?menu2)))
 )

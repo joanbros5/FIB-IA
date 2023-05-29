@@ -76,7 +76,7 @@
    (bind ?index 1)
    (while (<= ?index 7) do
 
-      (bind ?menu-escollit (genera-convinacions ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?postres-disponibles ?total-cal))
+      (bind ?menu-escollit (genera-convinacions-random ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?postres-disponibles ?total-cal))
 
       (if (> ?index 1)
             then 
@@ -113,7 +113,7 @@
 
    )
    (printout t crlf "--------------DONE--------------" crlf)
-   (focus logicas)
+
 )
 
 
