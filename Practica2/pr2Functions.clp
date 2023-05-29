@@ -239,16 +239,25 @@
 
 (deffunction MAIN::resvisio-temporada-dieta (?plats ?t ?d)
    (bind ?plats-definitius (create$))
-
-   (foreach ?plat ?plats
-      (if
-         (and
-            (member$ ?t (send ?plat get-temporada))
-            (member$ ?d (send ?plat get-tipusDieta))
+   (if (neq ?d n)
+      then
+         (foreach ?plat ?plats
+            (if
+               (and
+                  (member$ ?t (send ?plat get-temporada))
+                  (member$ ?d (send ?plat get-tipusDieta))
+                  )
+               then
+                  (bind ?plats-definitius (create$ ?plats-definitius ?plat))
+               )
             )
-         then
-            (bind ?plats-definitius (create$ ?plats-definitius ?plat))
-         )
+      else
+         (foreach ?plat ?plats
+            (if (member$ ?t (send ?plat get-temporada))
+               then
+                  (bind ?plats-definitius (create$ ?plats-definitius ?plat))
+               )
+            )
       )
    (return ?plats-definitius)
 )
