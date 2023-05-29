@@ -15,27 +15,12 @@
    (alimentsEvitats ?ae)
    (dieta ?d)
    =>
-   ;(println crlf crlf "Input fet..." crlf)
-   (bind ?total-cal (calcul-caloric ?s ?e ?na))
-
-   (printout t ?n crlf)
-   (printout t ?s crlf)
-   (printout t ?e crlf)
-   (printout t ?na crlf)
-   (printout t ?t crlf)
-   (printout t ?a crlf)
-   (printout t ?ae crlf)
-   (printout t ?d crlf)
-
-   (printout t crlf crlf "-/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\-")
-   (println crlf "Calories al dia aproximades per a " ?n ": " ?total-cal)
-   (printout t "-\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/-" crlf)
 
    (do-for-all-instances ((?c Plat)) (member$ (traduccio ?a) ?c:ingredients)
                            (send ?c delete)
          )
 
-   (do-for-all-instances ((?c Plat)) (member$ (traduccio-multi ?ae) ?c:ingredients)
+   (do-for-all-instances ((?c Plat)) (member$ (traduccio ?ae) ?c:ingredients)
                            (send ?c delete)
          )
 
@@ -61,10 +46,16 @@
    (bind ?sopars-disponibles (resvisio-temporada-dieta ?sopars-disponibles (traduccio ?t) (traduccio ?d)))
    (bind ?postres-disponibles (resvisio-temporada-dieta ?postres-disponibles (traduccio ?t) (traduccio ?d)))
 
-   (printout t ?esmorzars-disponibles crlf)
-   (printout t ?dinars-disponibles crlf)
-   (printout t ?sopars-disponibles crlf)
-   (printout t ?postres-disponibles crlf)
+   (bind ?total-cal (calcul-caloric ?s ?e ?na))
+
+   (printout t crlf crlf "-/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\--/\-")
+   (println crlf "Calories al dia aproximades per a " ?n ": " ?total-cal)
+   (println crlf "En " ?n " te disponibles: ")
+   (println crlf "   " (length$ ?esmorzars-disponibles) " esmorzars")
+   (println crlf "   " (length$ ?dinars-disponibles) " dinars")
+   (println crlf "   " (length$ ?sopars-disponibles) " sopars")
+   (println crlf "   " (length$ ?postres-disponibles) " postres" crlf)
+   (printout t "-\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/-" crlf)
 
    (bind ?index 1)
    (while (<= ?index 7) do
@@ -129,7 +120,7 @@
 (defrule questions::ask-sexe ""
    (not (sexe ?))
    =>
-   (assert (sexe (m-or-f-p "Quin sexe tens (home/dona)? ")))
+   (assert (sexe (ask-home-dona "Quin sexe tens (home/dona)? ")))
 )
 
 (defrule questions::ask-nvactivitat ""
