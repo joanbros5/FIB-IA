@@ -15,14 +15,19 @@
    (alimentsEvitats ?ae)
    (dieta ?d)
    =>
+   (if (neq ?a n)
+      then
+         (do-for-all-instances ((?c Plat)) (member$ (traduccio ?a) ?c:ingredients)
+                                 (send ?c delete)
+            )
+      )
 
-   (do-for-all-instances ((?c Plat)) (member$ (traduccio ?a) ?c:ingredients)
+   (if (neq ?ae n)
+      then
+         (do-for-all-instances ((?c Plat)) (member$ (traduccio ?ae) ?c:ingredients)
                            (send ?c delete)
-         )
-
-   (do-for-all-instances ((?c Plat)) (member$ (traduccio ?ae) ?c:ingredients)
-                           (send ?c delete)
-         )
+            )
+      )
 
    (bind ?esmorzars-disponibles (find-all-instances ((?c Plat))
                                     (member$ esmorzar ?c:tipusApat)
