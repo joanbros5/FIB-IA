@@ -30,7 +30,7 @@
 
 ;; ASKING FUNCTIONS
 (deffunction MAIN::ask-allowed-values (?question $?allowed-values)
-   (print ?question)
+   ;(print ?question)
    (bind ?answer (read))
    (if (lexemep ?answer)
        then (bind ?answer (lowcase ?answer)))
