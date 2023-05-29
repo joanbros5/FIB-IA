@@ -255,19 +255,32 @@
    (bind ?quantitat-greix (nth$ 3 ?all-quantitats))
    (bind ?quantitat-proteines (nth$ 4 ?all-quantitats))
 
+   ;(print (<= ?quantitat-kcal-menu (+ ?kcalRequerides ?margeCal)) crlf)
+   ;(print (>= ?quantitat-kcal-menu (- ?kcalRequerides ?margeCal)) crlf)
+
+   ;(print (<= (* 0.5 (+ ?kcalRequerides ?margeCal)) (* 4 ?quantitat-carbohidrats)) crlf)
+   ;(print (>= (* 0.6 (+ ?kcalRequerides ?margeCal)) (* 4 ?quantitat-carbohidrats)) crlf)
+
+   ;(print (<= (* 0.3  (+ ?kcalRequerides ?margeCal)) (* 9 ?quantitat-greix)) crlf)
+   ;(print (>= (* 0.35 (+ ?kcalRequerides ?margeCal)) (* 9 ?quantitat-greix)) crlf)
+
+   ;(print (<= (* 0.1  (+ ?kcalRequerides ?margeCal)) (* 4 ?quantitat-proteines)) crlf)
+   ;(print (>= (* 0.15 (+ ?kcalRequerides ?margeCal)) (* 4 ?quantitat-proteines)) crlf)
+   ;(print "--------" crlf)
+
    (if (and
 
          (<= ?quantitat-kcal-menu (+ ?kcalRequerides ?margeCal))
          (>= ?quantitat-kcal-menu (- ?kcalRequerides ?margeCal))
 
-         (<= (* 0.5 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
-         (>= (* 0.6 ?kcalRequerides) (* 4 ?quantitat-carbohidrats))
+         (<= (* 0.5 (- ?kcalRequerides ?margeCal)) (* 4 ?quantitat-carbohidrats))
+         (>= (* 0.6 (+ ?kcalRequerides ?margeCal)) (* 4 ?quantitat-carbohidrats))
 
-         (<= (* 0.3  ?kcalRequerides) (* 9 ?quantitat-greix))
-         (>= (* 0.35 ?kcalRequerides) (* 9 ?quantitat-greix))
+         (<= (* 0.3  (- ?kcalRequerides ?margeCal)) (* 9 ?quantitat-greix))
+         (>= (* 0.35 (+ ?kcalRequerides ?margeCal)) (* 9 ?quantitat-greix))
 
-         (<= (* 0.1  ?kcalRequerides) (* 4 ?quantitat-proteines))
-         (>= (* 0.15 ?kcalRequerides) (* 4 ?quantitat-proteines))
+         (<= (* 0.1  (- ?kcalRequerides ?margeCal)) (* 4 ?quantitat-proteines))
+         (>= (* 0.15 (+ ?kcalRequerides ?margeCal)) (* 4 ?quantitat-proteines))
 
       )
       then
@@ -300,6 +313,7 @@
                )) do
                (bind ?menu-candidat (genera-menu-random ?esmorzars ?dinars ?sopars ?postres))
                (bind ?marge (+ ?marge 1))
+               ;(print (nth$ 1 (count-items ?menu-candidat)) crlf)
       )
 
    (return ?menu-candidat)
@@ -334,4 +348,13 @@
             )
       )
    (return ?plats-definitius)
+)
+
+;;PRINTS
+(deffunction MAIN::printa-avis (?marge)
+	(printout t crlf "------------ATTENTION-----------" crlf)
+   	(printout t "Degut a que les restriccions alimentàries forcen a recomanar aliments" crlf)
+   	(printout t "amb baix contingut calòric, hi ha dies on la suma de calories és" crlf)
+   	(printout t "fins a " ?marge " inferior a la calculada." crlf)
+   	(printout t "Per no patir un dèficit calòric, recomanem augmentar el tamany de les racions." crlf)
 )

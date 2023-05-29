@@ -63,6 +63,7 @@
    (printout t "-\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/--\/-" crlf)
 
    (bind ?index 1)
+   (bind ?margeMax 0)
    (while (<= ?index 7) do
 
       (bind ?menu-escollit (genera-convinacions ?esmorzars-disponibles ?dinars-disponibles ?sopars-disponibles ?postres-disponibles ?total-cal))
@@ -88,6 +89,12 @@
       (printout t crlf "  Sopar Postre:      " (nth$ 6 ?menu-escollit) crlf)
 
       (bind ?dades-menu-escollit (count-items ?menu-escollit))
+      (bind ?marge (- ?total-cal (nth$ 1 ?dades-menu-escollit)))
+
+      (if (> ?marge ?margeMax)
+           then 
+		(bind ?margeMax ?marge)
+       )
 
       (printout t crlf "  Calories totals:     " (nth$ 1 ?dades-menu-escollit) crlf)
       (printout t crlf "  Carbohidrats totals: " (nth$ 2 ?dades-menu-escollit) crlf)
@@ -101,6 +108,11 @@
       (bind ?index (+ ?index 1))
 
    )
+
+   (if (> ?margeMax 500)
+	then (printa-avis ?margeMax)
+   )
+
    (printout t crlf "--------------DONE--------------" crlf)
    (focus logicas)
 )
