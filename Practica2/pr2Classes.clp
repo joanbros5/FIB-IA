@@ -11,9 +11,18 @@
 (deftemplate MAIN::MenuDiari
     (slot Esmorzar
         (type INSTANCE))
-    (multislot Dinar
+    (slot DinarPrimerPlat
+        (type INSTANCE)
+        (create-accessor read-write))
+    (slot DinarSegonPlat
+        (type INSTANCE)
+        (create-accessor read-write))
+    (slot DinarPostre
+        (type INSTANCE)
+        (create-accessor read-write))
+    (slot SoparPrimerPlat
         (type INSTANCE))
-    (multislot Sopar
+    (slot SoparPostre
         (type INSTANCE))
 )
 
@@ -109,7 +118,23 @@
     (slot edat
         (type INTEGER)
         (create-accessor read-write))
-    (slot nv_act
+    (slot nivell_activitat
         (type STRING)
         (create-accessor read-write))
+    (slot temporada
+        (type STRING)
+        (create-accessor read-write)
+        )
+    (slot alergies
+        (type STRING)
+        (create-accessor read-write)
+        )
+    (slot aliments-evitar
+        (type STRING)
+        (create-accessor read-write)
+        )
+    (slot tipusDieta
+        (type STRING)
+        (create-accessor read-write)
+        )
 )

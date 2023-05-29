@@ -1,6 +1,6 @@
 
 
-;;EASY FUNCTIONS
+;; EASY FUNCTIONS
 
 (deffunction MAIN::random-ord (?a ?b)
   (eq 1 (random 1 2))
@@ -24,8 +24,11 @@
 )
 
 
+(deffunction MAIN::valid-num (?num ?min ?max)
+   (return (and (eq (type ?num) INTEGER) (<= ?num ?max) (>= ?num ?min)))
+   )
 
-;;ASKING FUNCTIONS
+;; ASKING FUNCTIONS
 (deffunction MAIN::ask-allowed-values (?question $?allowed-values)
    (print ?question)
    (bind ?answer (read))
@@ -46,36 +49,6 @@
        then (bind ?answer (lowcase ?answer)))
     )
 
-(deffunction MAIN::valid-num (?num ?min ?max)
-   (return (and (eq (type ?num) INTEGER) (<= ?num ?max) (>= ?num ?min)))
-   )
-
-(deffunction MAIN::ask-question-multi-opt (?question ?allowed-values)
-  (while TRUE do ;return function will exit this loop
-    (printout t "| > " ?question " ")
-    (loop-for-count (?i 1 (length$ $?allowed-values)) do
-      (printout t crlf tab ?i ") " (nth$ ?i $?allowed-values))
-    )
-    (printout t crlf "| ")
-    (bind ?line (readline))
-    (bind $?answer (explode$ ?line))
-    (bind ?out (create$))
-    (foreach ?i ?answer
-      (if (not (valid-num ?i 1 (length$ $?allowed-values))) then
-        (break)
-      )
-      (bind ?v (nth$ ?i ?allowed-values))
-      (if (not (member$ ?v ?out)) then
-        (bind ?out (create$ ?out ?v))
-      )
-    )
-    (if (eq (length$ ?out) (length$ ?answer)) then
-      (return ?out)
-      else (printout t "| ## Invalid input ##" crlf)
-    )
-    )
-)
-
 (deffunction MAIN::ask-allowed-nums (?question)
    (print ?question)
    (bind ?answer (read))
@@ -86,7 +59,7 @@
    ?answer
    )
 
-(deffunction MAIN::m-or-f-p (?question)
+(deffunction MAIN::ask-home-dona (?question)
    (bind ?response (ask-allowed-values ?question home dona))
    (if (eq ?response h)
        then h
@@ -94,39 +67,8 @@
        )
    )
 
-(deffunction MAIN::traduccio-multi (?aliments)
 
-   (bind ?list (create$))
-   (foreach ?char ?aliments
-
-      (if (eq ?char 2)
-         then (bind ?list (create$ ?list ceba))
-      )
-      (if (eq ?char 3)
-         then (bind ?list (create$ ?list pebrot))
-      )
-      (if (eq ?char 4)
-         then (bind ?list (create$ ?list cacau))
-      )
-      (if (eq ?char 5)
-         then (bind ?list (create$ ?list marisc))
-      )
-      (if (eq ?char 6)
-         then (bind ?list (create$ ?list tomaquet))
-      )
-      (if (eq ?char 7)
-         then (bind ?list (create$ ?list fregit))
-      )
-      (if (eq ?char 8)
-         then (bind ?list (create$ ?list carn))
-      )
-      (if (eq ?char 9)
-         then (bind ?list (create$ ?list peix))
-      )
-   )
-
-   (return ?list)
-)
+;; INPUT TREATMENT FUNCTIONS
 
 (deffunction MAIN::traduccio (?char)
 
@@ -195,7 +137,7 @@
    )
 )
 
-
+;; GENERETING MENU FUNCTIONS
 
 (deffunction MAIN::calcul-caloric (?sexe ?edat ?na)
    (bind ?C 0)
@@ -289,15 +231,10 @@
    )
 )
 
+;; REVING MENU FUNCTIONS
+
 (deffunction MAIN::no-repeticions-dies-consecutius (?menu1 ?menu2)
    (return (elements-unics (create$ ?menu1 ?menu2)))
-)
-
-(deffunction MAIN::plat-valid (?plat ?t ?d)
-   (if (member$ ?t (send ?plat get-temporada))
-            then (return TRUE)
-            else (return FALSE)
-            )
 )
 
 (deffunction MAIN::resvisio-temporada-dieta (?plats ?t ?d)
