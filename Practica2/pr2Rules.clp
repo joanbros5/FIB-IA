@@ -148,7 +148,7 @@
    (not (nv_act ?))
    =>
    (print "Quin nivell d'activitat tens?" crlf)
-   (print "(sedentari (s) / actiu (a) / molt_actiu (ma):")
+   (print "sedentari (s) / actiu (a) / molt_actiu (ma):")
    (assert (nv_act (ask-allowed-values "Quin nivell d'activitat tens? (sedentari (s) / actiu (a) / molt_actiu (ma))? "
                     s a ma)))
    (print "----------" crlf)
@@ -158,7 +158,7 @@
   (not (temporada ?))
   =>
   (print "Quina temporada de l'any vols fer el menú?" crlf)
-  (print "(estiu (es) / primavera (pr) / tardor (ta) / hivern (hi):")
+  (print "estiu (es) / primavera (pr) / tardor (ta) / hivern (hi):")
   (assert (temporada (ask-allowed-values "Quina temporada de l'any vols fer el menú? (estiu (es) / primavera (pr) / tardor (ta) / hivern (hi))? "
                  es pr ta hi)))
   (print "----------" crlf)
@@ -169,7 +169,7 @@
   =>
   (print "Ets alèrgic, intolerant, o preferiries no tenir" crlf)
   (print "en el menu algun dels següents ingredients?:" crlf)
-  (print "(cap alèrgia (n) / ou (o) / làctics (l) / gluten (g):")
+  (print "cap alèrgia (n) / ou (o) / làctics (l) / gluten (g):")
   (assert (alergies (ask-allowed-values "Ets alèrgic, intolerant, o preferiries no tenir en el menu algun dels següents ingredients (cap alèrgia (n) / ou (o) / làctics (l) / gluten (g))? "
                   n o l g)))
   (print "----------" crlf)
@@ -179,7 +179,7 @@
   (not (alimentsEvitats ?))
   =>
   (print "D'aquests tipus d'aliments, vols evitar-ne algun?" crlf)
-  (print "(cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m)" crlf)
+  (print "cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m)" crlf)
   (print "tomaquet (t) / fregit (f) / carn (cr) / peix (px):")
   (assert (alimentsEvitats (ask-allowed-values "D'aquests tipus d'aliments, vols evitar-ne algun? (cap (n) / ceba (c) / pebrot (p) / cacau (ca) / marisc (m) / tomaquet (t) / fregit (f) / carn (cr) / peix (px))"
                   n c p ca m t f cr px)))
