@@ -123,7 +123,7 @@
       then (return peix)
    )
 
-   (if (eq ?char ve)
+   (if (eq ?char vt)
       then (return vegetariana)
    )
    (if (eq ?char vg)
@@ -239,7 +239,7 @@
 
 (deffunction MAIN::resvisio-temporada-dieta (?plats ?t ?d)
    (bind ?plats-definitius (create$))
-   (if (neq ?d n)
+   (if (neq ?d no)
       then
          (foreach ?plat ?plats
             (if
