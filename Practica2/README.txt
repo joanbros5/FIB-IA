@@ -14,16 +14,8 @@
 
 	Per a provar el codi, executar:
 
-	> (load "pr2Classes.clp")
-	> (load "pr2Functions.clp")
-	> (load "pr2Instances.clp")
-	> (load "pr2Moduls.clp")
-	> (load "pr2Rules.clp")
-	> (reset)
-	> (run 1)
-		Benvingut al increíble creador de menús!
-	> (run 1)
-		[input]
-	> (run 1)
-		[input]
-	etc
+	> load batch -> run.clp.bat
+
+	Per a provar els tests:
+
+        > load batch -> testX.tst
