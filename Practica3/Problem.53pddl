@@ -12,10 +12,13 @@
 		(te p1 h1)
 		(te p2 h2)
 		(te p3 h1)
-		
+		(te p4 h2)
+		(te p5 h1)
 		(disponible p1)
 		(disponible p2)
 		(disponible p3)
+		(disponible p4)
+		(disponible p5)
 r
 		(es t1 d1)
 		(es t2 d2)
