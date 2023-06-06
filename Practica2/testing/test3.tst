@@ -1,6 +1,6 @@
 (batch "testing.clp.bat")
 
-Jordi
+jordi
 66
 home
 ma
