@@ -1,6 +1,6 @@
 
 (define (domain planificator3000)
-	(:requirements :adl :typing :fluents)
+	(:requirements :adl :typing)
 	(:types 
 		programador habilitat tasca dificultat
 	)
