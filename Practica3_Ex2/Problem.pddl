@@ -54,13 +54,6 @@
         (= (calitat p5) 2)
         (= (calitat p6) 1)
 
-        (= (nTasques p1) 0)
-        (= (nTasques p2) 0)
-        (= (nTasques p3) 0)
-        (= (nTasques p4) 0)
-        (= (nTasques p5) 0)
-        (= (nTasques p6) 0)
-
 		(= (dificultat t1) 1)
         (= (dificultat t2) 2)
         (= (dificultat t3) 3)
@@ -90,10 +83,8 @@
         (= (tempsTotal) 0)
 
     )
-    (:goal (and
-        		(forall (?t - tasca) (revisada ?t))
-        		(forall (?p - programador) (<= (nTasques ?p) 2))
-        		)
+    (:goal
+        (forall (?t - tasca) (revisada ?t))
     )
 
     (:metric minimize (tempsTotal))

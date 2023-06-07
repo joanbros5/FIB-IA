@@ -7,7 +7,6 @@
 	(:functions
 		(habilitat 	?p - programador)
 		(calitat	?p - programador)
-		(nTasques	?p - programador)
 		(dificultat	?t - tasca)
 		(temps		?t - tasca)
 		(tempsTotal)
@@ -37,7 +36,6 @@
 						(asignada ?t)
 						(asignada_a ?t ?p)
 						(increase (tempsTotal) (temps ?t))
-						(increase (nTasques ?p) 1)
 						)
 	)
 	(:action revisar
@@ -50,12 +48,12 @@
 						(not (revisada ?t))
 						(not (asignada_a ?t ?p))
 						(<= (- 1 (dificultat ?t)) (habilitat ?p))
+
 						)
 		:effect (and
 					(revisada ?t)
 					(revisat_per ?t ?p)
 					(increase (tempsTotal) (calitat ?p))
-					(increase (nTasques ?p) 1)
 					)
 	)
 	(:action asignarDur
@@ -72,7 +70,6 @@
 						(asignada ?t)
 						(asignada_a ?t ?p)
 						(increase (tempsTotal) (+ 2 (temps ?t)))
-						(increase (nTasques ?p) 1)
 						)
 	)
 )
