@@ -1,6 +1,6 @@
 
 (define (domain planificator3000)
-	(:requirements :adl :typing :fluents)
+	(:requirements :adl :typing :strips :fluents)
 	(:types 
 		programador tasca - object
 	)
@@ -10,6 +10,7 @@
 		(nTasques	?p - programador)
 		(dificultat	?t - tasca)
 		(temps		?t - tasca)
+		(progEnUs)
 		(tempsTotal)
 	)
 	(:predicates 
@@ -20,7 +21,6 @@
 		(disponible ?p - programador)
 		(asignada_a ?t - tasca ?p - programador)
 		(revisat_per ?t - tasca ?p - programador)
-
 	)
 	
 	(:action asignar
@@ -37,6 +37,9 @@
 						(asignada ?t)
 						(asignada_a ?t ?p)
 						(increase (tempsTotal) (temps ?t))
+						(when (= 0 (nTasques ?p)) 
+							(increase (progEnUs) 1)
+						)
 						(increase (nTasques ?p) 1)
 						)
 	)
@@ -55,7 +58,6 @@
 					(revisada ?t)
 					(revisat_per ?t ?p)
 					(increase (tempsTotal) (calitat ?p))
-					(increase (nTasques ?p) 1)
 					)
 	)
 	(:action asignarDur
@@ -72,6 +74,9 @@
 						(asignada ?t)
 						(asignada_a ?t ?p)
 						(increase (tempsTotal) (+ 2 (temps ?t)))
+						(when (= 0 (nTasques ?p))
+							(increase (progEnUs) 1)
+						)
 						(increase (nTasques ?p) 1)
 						)
 	)
