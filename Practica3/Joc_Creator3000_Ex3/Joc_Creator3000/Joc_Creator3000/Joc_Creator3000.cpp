@@ -9,10 +9,13 @@ set<string> programadors;
 set<string> tasques;
 
 int randInt(int min, int max) {
-    return min + (rand() % max);
+    return min + (rand() % (max-min));
 }
 
 void genera_sets(int min, int max) {
+
+    programadors.clear();
+    tasques.clear();
 
     //Genera programadors
     int maxP = randInt(min, max);
