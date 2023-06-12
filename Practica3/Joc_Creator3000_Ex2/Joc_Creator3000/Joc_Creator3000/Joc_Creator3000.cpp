@@ -90,7 +90,7 @@ void crea_arxiu(ofstream& outputFile) {
     outputFile << "    )" << endl << endl;
 
     //METRIC
-    outputFile << "    (:metric minimize(+(*0.1 (tempsTotal)) (*0.9 (progEnUs))))" << endl << endl;
+    outputFile << "    (:metric minimize (tempsTotal))" << endl << endl;
 
     outputFile << ")" << endl;
 

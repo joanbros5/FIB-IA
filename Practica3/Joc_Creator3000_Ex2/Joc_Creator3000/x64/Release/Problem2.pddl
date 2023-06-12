@@ -2,18 +2,18 @@
     (:domain planificator3000)
 
     (:objects
-        p1 p10 p11 p12 p13 p14 p15 p16 p2 p3 p4 p5 p6 p7 p8 p9 - programador
-        t1 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t2 t20 t21 t22 t23 t24 t25 t26 t3 t4 t5 t6 t7 t8 t9 - tasca
+        p1 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p2 p20 p21 p22 p23 p24 p3 p4 p5 p6 p7 p8 p9 - programador
+        t1 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t2 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t3 t30 t31 t32 t33 t34 t35 t36 t37 t38 t39 t4 t40 t41 t42 t43 t44 t45 t46 t47 t48 t49 t5 t50 t51 t52 t6 t7 t8 t9 - tasca
     )
 
     (:init
 
         (disponible p1)
         (= (habilitat p1) 2)
-        (= (calitat p1) 2)
+        (= (calitat p1) 1)
 
         (disponible p10)
-        (= (habilitat p10) 3)
+        (= (habilitat p10) 1)
         (= (calitat p10) 1)
 
         (disponible p11)
@@ -25,28 +25,60 @@
         (= (calitat p12) 2)
 
         (disponible p13)
-        (= (habilitat p13) 1)
+        (= (habilitat p13) 2)
         (= (calitat p13) 1)
 
         (disponible p14)
         (= (habilitat p14) 2)
-        (= (calitat p14) 2)
+        (= (calitat p14) 1)
 
         (disponible p15)
         (= (habilitat p15) 1)
-        (= (calitat p15) 2)
+        (= (calitat p15) 1)
 
         (disponible p16)
-        (= (habilitat p16) 1)
-        (= (calitat p16) 2)
+        (= (habilitat p16) 2)
+        (= (calitat p16) 1)
+
+        (disponible p17)
+        (= (habilitat p17) 2)
+        (= (calitat p17) 2)
+
+        (disponible p18)
+        (= (habilitat p18) 2)
+        (= (calitat p18) 1)
+
+        (disponible p19)
+        (= (habilitat p19) 2)
+        (= (calitat p19) 2)
 
         (disponible p2)
         (= (habilitat p2) 1)
         (= (calitat p2) 1)
 
+        (disponible p20)
+        (= (habilitat p20) 2)
+        (= (calitat p20) 1)
+
+        (disponible p21)
+        (= (habilitat p21) 2)
+        (= (calitat p21) 1)
+
+        (disponible p22)
+        (= (habilitat p22) 2)
+        (= (calitat p22) 1)
+
+        (disponible p23)
+        (= (habilitat p23) 2)
+        (= (calitat p23) 1)
+
+        (disponible p24)
+        (= (habilitat p24) 3)
+        (= (calitat p24) 2)
+
         (disponible p3)
-        (= (habilitat p3) 2)
-        (= (calitat p3) 2)
+        (= (habilitat p3) 3)
+        (= (calitat p3) 1)
 
         (disponible p4)
         (= (habilitat p4) 3)
@@ -57,30 +89,30 @@
         (= (calitat p5) 2)
 
         (disponible p6)
-        (= (habilitat p6) 1)
-        (= (calitat p6) 1)
+        (= (habilitat p6) 3)
+        (= (calitat p6) 2)
 
         (disponible p7)
         (= (habilitat p7) 3)
-        (= (calitat p7) 2)
+        (= (calitat p7) 1)
 
         (disponible p8)
-        (= (habilitat p8) 2)
+        (= (habilitat p8) 1)
         (= (calitat p8) 1)
 
         (disponible p9)
-        (= (habilitat p9) 1)
-        (= (calitat p9) 1)
+        (= (habilitat p9) 2)
+        (= (calitat p9) 2)
 
         (not (asignada t1))
         (not (revisada t1))
-        (= (dificultat t1) 2)
-        (= (temps t1) 1)
+        (= (dificultat t1) 3)
+        (= (temps t1) 4)
 
         (not (asignada t10))
         (not (revisada t10))
         (= (dificultat t10) 1)
-        (= (temps t10) 3)
+        (= (temps t10) 2)
 
         (not (asignada t11))
         (not (revisada t11))
@@ -89,118 +121,248 @@
 
         (not (asignada t12))
         (not (revisada t12))
-        (= (dificultat t12) 2)
+        (= (dificultat t12) 3)
         (= (temps t12) 5)
 
         (not (asignada t13))
         (not (revisada t13))
-        (= (dificultat t13) 3)
-        (= (temps t13) 1)
+        (= (dificultat t13) 2)
+        (= (temps t13) 5)
 
         (not (asignada t14))
         (not (revisada t14))
         (= (dificultat t14) 2)
-        (= (temps t14) 5)
+        (= (temps t14) 4)
 
         (not (asignada t15))
         (not (revisada t15))
-        (= (dificultat t15) 3)
-        (= (temps t15) 1)
+        (= (dificultat t15) 1)
+        (= (temps t15) 5)
 
         (not (asignada t16))
         (not (revisada t16))
-        (= (dificultat t16) 1)
-        (= (temps t16) 2)
+        (= (dificultat t16) 3)
+        (= (temps t16) 4)
 
         (not (asignada t17))
         (not (revisada t17))
-        (= (dificultat t17) 3)
-        (= (temps t17) 4)
+        (= (dificultat t17) 1)
+        (= (temps t17) 5)
 
         (not (asignada t18))
         (not (revisada t18))
-        (= (dificultat t18) 3)
-        (= (temps t18) 4)
+        (= (dificultat t18) 2)
+        (= (temps t18) 1)
 
         (not (asignada t19))
         (not (revisada t19))
-        (= (dificultat t19) 3)
+        (= (dificultat t19) 2)
         (= (temps t19) 3)
 
         (not (asignada t2))
         (not (revisada t2))
-        (= (dificultat t2) 2)
+        (= (dificultat t2) 1)
         (= (temps t2) 2)
 
         (not (asignada t20))
         (not (revisada t20))
-        (= (dificultat t20) 1)
-        (= (temps t20) 4)
+        (= (dificultat t20) 3)
+        (= (temps t20) 5)
 
         (not (asignada t21))
         (not (revisada t21))
         (= (dificultat t21) 3)
-        (= (temps t21) 3)
+        (= (temps t21) 5)
 
         (not (asignada t22))
         (not (revisada t22))
-        (= (dificultat t22) 3)
-        (= (temps t22) 2)
+        (= (dificultat t22) 2)
+        (= (temps t22) 5)
 
         (not (asignada t23))
         (not (revisada t23))
         (= (dificultat t23) 3)
-        (= (temps t23) 4)
+        (= (temps t23) 1)
 
         (not (asignada t24))
         (not (revisada t24))
         (= (dificultat t24) 2)
-        (= (temps t24) 4)
+        (= (temps t24) 1)
 
         (not (asignada t25))
         (not (revisada t25))
-        (= (dificultat t25) 3)
+        (= (dificultat t25) 1)
         (= (temps t25) 4)
 
         (not (asignada t26))
         (not (revisada t26))
-        (= (dificultat t26) 3)
-        (= (temps t26) 5)
+        (= (dificultat t26) 2)
+        (= (temps t26) 1)
+
+        (not (asignada t27))
+        (not (revisada t27))
+        (= (dificultat t27) 3)
+        (= (temps t27) 3)
+
+        (not (asignada t28))
+        (not (revisada t28))
+        (= (dificultat t28) 1)
+        (= (temps t28) 4)
+
+        (not (asignada t29))
+        (not (revisada t29))
+        (= (dificultat t29) 3)
+        (= (temps t29) 1)
 
         (not (asignada t3))
         (not (revisada t3))
-        (= (dificultat t3) 3)
+        (= (dificultat t3) 1)
         (= (temps t3) 2)
+
+        (not (asignada t30))
+        (not (revisada t30))
+        (= (dificultat t30) 1)
+        (= (temps t30) 1)
+
+        (not (asignada t31))
+        (not (revisada t31))
+        (= (dificultat t31) 1)
+        (= (temps t31) 2)
+
+        (not (asignada t32))
+        (not (revisada t32))
+        (= (dificultat t32) 3)
+        (= (temps t32) 1)
+
+        (not (asignada t33))
+        (not (revisada t33))
+        (= (dificultat t33) 2)
+        (= (temps t33) 4)
+
+        (not (asignada t34))
+        (not (revisada t34))
+        (= (dificultat t34) 3)
+        (= (temps t34) 1)
+
+        (not (asignada t35))
+        (not (revisada t35))
+        (= (dificultat t35) 3)
+        (= (temps t35) 5)
+
+        (not (asignada t36))
+        (not (revisada t36))
+        (= (dificultat t36) 3)
+        (= (temps t36) 1)
+
+        (not (asignada t37))
+        (not (revisada t37))
+        (= (dificultat t37) 1)
+        (= (temps t37) 2)
+
+        (not (asignada t38))
+        (not (revisada t38))
+        (= (dificultat t38) 1)
+        (= (temps t38) 1)
+
+        (not (asignada t39))
+        (not (revisada t39))
+        (= (dificultat t39) 1)
+        (= (temps t39) 3)
 
         (not (asignada t4))
         (not (revisada t4))
-        (= (dificultat t4) 2)
-        (= (temps t4) 1)
+        (= (dificultat t4) 1)
+        (= (temps t4) 5)
+
+        (not (asignada t40))
+        (not (revisada t40))
+        (= (dificultat t40) 3)
+        (= (temps t40) 1)
+
+        (not (asignada t41))
+        (not (revisada t41))
+        (= (dificultat t41) 2)
+        (= (temps t41) 5)
+
+        (not (asignada t42))
+        (not (revisada t42))
+        (= (dificultat t42) 3)
+        (= (temps t42) 1)
+
+        (not (asignada t43))
+        (not (revisada t43))
+        (= (dificultat t43) 1)
+        (= (temps t43) 2)
+
+        (not (asignada t44))
+        (not (revisada t44))
+        (= (dificultat t44) 1)
+        (= (temps t44) 5)
+
+        (not (asignada t45))
+        (not (revisada t45))
+        (= (dificultat t45) 3)
+        (= (temps t45) 5)
+
+        (not (asignada t46))
+        (not (revisada t46))
+        (= (dificultat t46) 3)
+        (= (temps t46) 3)
+
+        (not (asignada t47))
+        (not (revisada t47))
+        (= (dificultat t47) 3)
+        (= (temps t47) 4)
+
+        (not (asignada t48))
+        (not (revisada t48))
+        (= (dificultat t48) 3)
+        (= (temps t48) 2)
+
+        (not (asignada t49))
+        (not (revisada t49))
+        (= (dificultat t49) 2)
+        (= (temps t49) 3)
 
         (not (asignada t5))
         (not (revisada t5))
         (= (dificultat t5) 1)
-        (= (temps t5) 1)
+        (= (temps t5) 5)
+
+        (not (asignada t50))
+        (not (revisada t50))
+        (= (dificultat t50) 2)
+        (= (temps t50) 4)
+
+        (not (asignada t51))
+        (not (revisada t51))
+        (= (dificultat t51) 2)
+        (= (temps t51) 4)
+
+        (not (asignada t52))
+        (not (revisada t52))
+        (= (dificultat t52) 1)
+        (= (temps t52) 2)
 
         (not (asignada t6))
         (not (revisada t6))
         (= (dificultat t6) 3)
-        (= (temps t6) 1)
+        (= (temps t6) 5)
 
         (not (asignada t7))
         (not (revisada t7))
         (= (dificultat t7) 2)
-        (= (temps t7) 3)
+        (= (temps t7) 4)
 
         (not (asignada t8))
         (not (revisada t8))
-        (= (dificultat t8) 2)
+        (= (dificultat t8) 1)
         (= (temps t8) 1)
 
         (not (asignada t9))
         (not (revisada t9))
-        (= (dificultat t9) 1)
-        (= (temps t9) 4)
+        (= (dificultat t9) 2)
+        (= (temps t9) 5)
 
 
         (= (tempsTotal) 0)
@@ -211,6 +373,6 @@
           (forall(?t - tasca) (revisada ?t))
     )
 
-    (:metric minimize(+(*0.1 (tempsTotal)) (*0.9 (progEnUs))))
+    (:metric minimize (tempsTotal))
 
 )
