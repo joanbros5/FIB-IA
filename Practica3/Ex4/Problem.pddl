@@ -85,7 +85,7 @@
         (= (nTasques p11) 0)
         (= (nTasques p12) 0)
 
-		(= (dificultat t1) 1)
+	(= (dificultat t1) 1)
         (= (dificultat t2) 1)
         (= (dificultat t3) 1)
         (= (dificultat t4) 2)
