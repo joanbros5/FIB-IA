@@ -14,6 +14,20 @@
         (disponible p5)
         (disponible p6)
 
+        (= (habilitat p1) 1)
+        (= (habilitat p2) 2)
+        (= (habilitat p3) 2)
+        (= (habilitat p4) 3)
+        (= (habilitat p5) 2)
+        (= (habilitat p6) 3)
+
+        (= (calitat p1) 1)
+        (= (calitat p2) 1)
+        (= (calitat p3) 2)
+        (= (calitat p4) 1)
+        (= (calitat p5) 2)
+        (= (calitat p6) 1)
+
         (not (asignada t1))
         (not (asignada t2))
         (not (asignada t3))
@@ -40,19 +54,6 @@
         (not (revisada t11))
         (not (revisada t12))
 
-        (= (habilitat p1) 1)
-        (= (habilitat p2) 2)
-        (= (habilitat p3) 2)
-        (= (habilitat p4) 3)
-        (= (habilitat p5) 2)
-        (= (habilitat p6) 3)
-
-        (= (calitat p1) 1)
-        (= (calitat p2) 1)
-        (= (calitat p3) 2)
-        (= (calitat p4) 1)
-        (= (calitat p5) 2)
-        (= (calitat p6) 1)
 
 		(= (dificultat t1) 1)
         (= (dificultat t2) 2)
