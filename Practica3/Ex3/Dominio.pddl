@@ -55,6 +55,7 @@
 					(revisada ?t)
 					(revisat_per ?t ?p)
 					(increase (tempsTotal) (calitat ?p))
+					(increase (nTasques ?p) 1)
 					)
 	)
 	(:action asignarDur

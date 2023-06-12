@@ -48,7 +48,6 @@
 						(not (revisada ?t))
 						(not (asignada_a ?t ?p))
 						(<= (- 1 (dificultat ?t)) (habilitat ?p))
-
 						)
 		:effect (and
 					(revisada ?t)
