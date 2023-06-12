@@ -106,33 +106,158 @@ int main()
     //Obre arxius de sortida
     ofstream outputFile;
 
-    //Crea sets 5-10
-    outputFile.open("Problem1.pddl");
-    genera_sets(5, 10);
+    //Crea sets 3-6
+    outputFile.open("Problem3_6_1.pddl");
+    genera_sets(3, 6);
     crea_arxiu(outputFile);
     outputFile.close();
 
-    //Crea sets 10-15
-    outputFile.open("Problem2.pddl");
-    genera_sets(10, 15);
+    outputFile.open("Problem3_6_2.pddl");
+    genera_sets(3, 6);
     crea_arxiu(outputFile);
     outputFile.close();
 
-    //Crea sets 15-20
-    outputFile.open("Problem3.pddl");
-    genera_sets(15, 20);
+    outputFile.open("Problem3_6_3.pddl");
+    genera_sets(3, 6);
     crea_arxiu(outputFile);
     outputFile.close();
 
-    //Crea sets 20-25
-    outputFile.open("Problem4.pddl");
-    genera_sets(20, 25);
+    outputFile.open("Problem3_6_4.pddl");
+    genera_sets(3, 6);
     crea_arxiu(outputFile);
     outputFile.close();
 
-    //Crea sets 25-30
-    outputFile.open("Problem5.pddl");
-    genera_sets(25, 20);
+    outputFile.open("Problem3_6_5.pddl");
+    genera_sets(3, 6);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem3_6_6.pddl");
+    genera_sets(3, 6);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    //Crea sets 6-9
+    outputFile.open("Problem6_9_1.pddl");
+    genera_sets(6, 9);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem6_9_2.pddl");
+    genera_sets(6, 9);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem6_9_3.pddl");
+    genera_sets(6, 9);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem6_9_4.pddl");
+    genera_sets(6, 9);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem6_9_5.pddl");
+    genera_sets(6, 9);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem6_9_6.pddl");
+    genera_sets(6, 9);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    //Crea sets 9-12
+    outputFile.open("Problem9_12_1.pddl");
+    genera_sets(9, 12);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem9_12_2.pddl");
+    genera_sets(9, 12);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem9_12_3.pddl");
+    genera_sets(9, 12);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem9_12_4.pddl");
+    genera_sets(9, 12);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem9_12_5.pddl");
+    genera_sets(9, 12);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem9_12_6.pddl");
+    genera_sets(9, 12);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    //Crea sets 12-15
+    outputFile.open("Problem12_15_1.pddl");
+    genera_sets(12, 15);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem12_15_2.pddl");
+    genera_sets(12, 15);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem12_15_3.pddl");
+    genera_sets(12, 15);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem12_15_4.pddl");
+    genera_sets(12, 15);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem12_15_5.pddl");
+    genera_sets(12, 15);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem12_15_6.pddl");
+    genera_sets(12, 15);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    //Crea sets 15-18
+    outputFile.open("Problem15_18_1.pddl");
+    genera_sets(15, 18);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem15_18_2.pddl");
+    genera_sets(15, 18);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem15_18_3.pddl");
+    genera_sets(15, 18);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem15_18_4.pddl");
+    genera_sets(15, 18);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem15_18_5.pddl");
+    genera_sets(15, 18);
+    crea_arxiu(outputFile);
+    outputFile.close();
+
+    outputFile.open("Problem15_18_6.pddl");
+    genera_sets(15, 18);
     crea_arxiu(outputFile);
     outputFile.close();
 }
